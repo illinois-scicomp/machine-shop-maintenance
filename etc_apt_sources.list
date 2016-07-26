@@ -1,0 +1,13 @@
+deb [arch=i386,amd64] http://debian.cites.illinois.edu/pub/debian jessie main contrib non-free
+deb [arch=i386,amd64] http://debian.cites.illinois.edu/pub/debian testing main contrib non-free
+deb [arch=i386,amd64] http://debian.cites.illinois.edu/pub/debian sid main contrib non-free
+deb [arch=i386,amd64] http://debian.cites.illinois.edu/pub/debian experimental main contrib non-free
+deb-src http://debian.cites.illinois.edu/pub/debian unstable main contrib non-free
+deb-src http://debian.cites.illinois.edu/pub/debian experimental main contrib non-free
+
+deb http://security.debian.org/ jessie/updates main
+deb-src http://security.debian.org/ jessie/updates main
+
+# jessie-updates, previously known as 'volatile'
+deb http://debian.cites.illinois.edu/pub/debian/ jessie-updates main
+deb-src http://debian.cites.illinois.edu/pub/debian/ jessie-updates main

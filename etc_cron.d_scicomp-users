@@ -1,0 +1,3 @@
+*/10 * * * * root       /etc/scicomp-users/update.sh
+*/10 * * * * root       /etc/scicomp-users/update-motd.sh
+
