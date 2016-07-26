@@ -27,4 +27,8 @@ if [[ "$(hostname)" != "porter" ]]; then
 fi
 cp etc_cron.d_scicomp-users /etc/cron.d/scicomp-users
 
+cp etc_sysctl.d_80-allow-unpriv-perf.conf /etc/sysctl.d/80-allow-unpriv-perf.conf
+
 (cd /etc/cron.daily; rm -f snapshot-filesystems; ln -s /shared/tools/snapshot-filesystems)
+
+echo "COMPLETED SUCCESSFULLY"
