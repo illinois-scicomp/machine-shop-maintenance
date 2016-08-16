@@ -18,7 +18,8 @@ apt install aptitude \
   unattended-upgrades \
   curl python3-yaml \
   libnss-extrausers \
-  mlocate
+  mlocate \
+  exim4
 
 cp etc_apt_apt.conf.d_02periodic /etc/apt/apt.conf.d/02periodic
 cp etc_apt_apt.conf.d_50unattended-upgrades /etc/apt/apt.conf.d/50unattended-upgrades
