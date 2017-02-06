@@ -1,0 +1,30 @@
+#! /bin/bash
+
+set -e
+set -x
+
+apt-get remove --purge pocl-opencl-icd
+apt autoremove
+
+BUILD_PATH=/opt/llvm-4.0
+INSTALL_PATH=/opt/llvm-4.0-build
+BRANCH=release_40
+
+rm -Rf "$INSTALL_PATH"
+rm -Rf "$BUILD_PATH"
+cd $(dirname $BUILD_PATH)
+git clone https://github.com/llvm-mirror/llvm.git $(basename $BUILD_PATH)
+cd "$BUILD_PATH"
+git checkout $BRANCH
+
+(cd $BUILD_PATH/tools && git clone https://github.com/llvm-mirror/clang.git && cd clang && git checkout $BRANCH )
+	
+mkdir "$BUILD_PATH//build"
+(cd "$BUILD_PATH/build" && \
+	cmake \
+		-D CMAKE_INSTALL_PREFIX="$INSTALL_PATH" \
+		-D LLVM_TARGETS_TO_BUILD="host" \
+		-D CMAKE_BUILD_TYPE="Release" \
+		.. \
+	&& make -j10 install)
+

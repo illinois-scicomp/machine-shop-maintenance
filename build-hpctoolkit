@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -e
+set -x
+
+cd /tmp
+
+rm -Rf /tmp/hpctoolkit
+rm -Rf /tmp/hpctoolkit-externals
+rm -Rf /opt/hpctoolkit
+
+git clone https://github.com/HPCToolkit/hpctoolkit.git
+git clone https://github.com/HPCToolkit/hpctoolkit-externals.git
+
+PREFIX=/opt/hpctoolkit
+rm -Rf prefix
+
+cd /tmp/hpctoolkit-externals
+./configure --prefix=$PREFIX
+make -j install
+
+cd /tmp/hpctoolkit
+MPICC=mpicc MPICXX=mpicxx MPIF77=mpif77 ./configure \
+    --prefix=$PREFIX \
+    --with-externals=$PREFIX \
+    --with-papi=/usr \
+    --enable-papi-c \
+    --enable-mpi
+
+# --with-cuda=/usr \
+# --with-cuda-lib=/usr/lib/x86_64-linux-gnu \
+
+make -j install
+
