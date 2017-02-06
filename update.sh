@@ -19,7 +19,8 @@ apt install aptitude \
   curl python3-yaml \
   libnss-extrausers \
   mlocate \
-  exim4
+  exim4 \
+  libopenmpi-dev openmpi-common
 
 cp etc_apt_apt.conf.d_02periodic /etc/apt/apt.conf.d/02periodic
 cp etc_apt_apt.conf.d_50unattended-upgrades /etc/apt/apt.conf.d/50unattended-upgrades
@@ -32,6 +33,8 @@ fi
 cp etc_cron.d_scicomp-users /etc/cron.d/scicomp-users
 
 cp etc_sysctl.d_80-allow-unpriv-perf.conf /etc/sysctl.d/80-allow-unpriv-perf.conf
+
+cp etc_openmpi_openmpi-mca-params.conf /etc/openmpi/openmpi-mca-params.conf
 
 (cd /etc/cron.daily; rm -f snapshot-filesystems; ln -s /shared/tools/snapshot-filesystems)
 
