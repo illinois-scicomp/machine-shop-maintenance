@@ -1,0 +1,38 @@
+#! /bin/bash
+
+set -e
+set -x
+
+if test "$1" = ""; then
+  echo "usage: $0 INSTALL_PATH"
+  exit 1
+fi
+
+INSTALL_PATH="$1"
+BUILD_PATH=/opt/llvm-4.0
+BRANCH=release_40
+
+rm -Rf "$BUILD_PATH"
+cd $(dirname $BUILD_PATH)
+git clone https://github.com/llvm-mirror/llvm.git $(basename $BUILD_PATH)
+cd "$BUILD_PATH"
+git checkout $BRANCH
+
+(cd $BUILD_PATH/tools && git clone https://github.com/llvm-mirror/clang.git && cd clang && git checkout $BRANCH )
+(cd $BUILD_PATH/tools/clang; patch -p1 < /shared/config/clang-4.0-opencl-calling-conv.patch)
+	
+mkdir "$BUILD_PATH//build"
+(cd "$BUILD_PATH/build" && \
+	cmake \
+		-D CMAKE_INSTALL_PREFIX="$INSTALL_PATH" \
+		-D LLVM_TARGETS_TO_BUILD="host" \
+		-D CMAKE_BUILD_TYPE="Release" \
+		-D LLVM_ENABLE_RTTI=ON \
+		-D CLANG_INCLUDE_TESTS=OFF \
+		-D CLANG_INCLUDE_DOCS=OFF \
+		-D LLVM_INCLUDE_TESTS=OFF \
+		-D LLVM_INCLUDE_EXAMPLES=OFF \
+		-D LLVM_INCLUDE_DOCS=OFF \
+		.. \
+	&& make -j30 install)
+
