@@ -16,10 +16,14 @@ BRANCH="$1"
 BUILD_PATH="/opt/pocl-$BRANCH-build"
 INSTALL_PATH="/opt/pocl-$BRANCH"
 
+EXECUTABLE="$(readlink -f "$0")"
+SCRIPT_DIR="$(dirname "$EXECUTABLE")"
+SCRIPT_DIR="$(readlink -f "$DIR")"
+
 rm -Rf "$INSTALL_PATH"
 rm -Rf "$BUILD_PATH/pocl-master"
 
-/shared/config/build-llvm-4.0 "$INSTALL_PATH"
+$SCRIPT_DIR/build-llvm-4.0 "$INSTALL_PATH"
 
 cd /opt
 git clone https://github.com/pocl/pocl.git "$BUILD_PATH"
@@ -63,5 +67,5 @@ mkdir "$BUILD_PATH/build"
 		-D LLVM_CONFIG=$INSTALL_PATH/bin/llvm-config \
 		-D CMAKE_BUILD_TYPE=Release \
 		.. &&  \
-	make -j30 install)
+	make -j15 install)
 
