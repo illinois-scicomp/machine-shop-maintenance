@@ -18,7 +18,7 @@ INSTALL_PATH="/opt/pocl-$BRANCH"
 
 EXECUTABLE="$(readlink -f "$0")"
 SCRIPT_DIR="$(dirname "$EXECUTABLE")"
-SCRIPT_DIR="$(readlink -f "$DIR")"
+SCRIPT_DIR="$(readlink -f "$SCRIPT_DIR")"
 
 rm -Rf "$INSTALL_PATH"
 rm -Rf "$BUILD_PATH/pocl-master"

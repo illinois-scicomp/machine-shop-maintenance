@@ -14,7 +14,7 @@ BRANCH=release_40
 
 EXECUTABLE="$(readlink -f "$0")"
 SCRIPT_DIR="$(dirname "$EXECUTABLE")"
-SCRIPT_DIR="$(readlink -f "$DIR")"
+SCRIPT_DIR="$(readlink -f "$SCRIPT_DIR")"
 
 rm -Rf "$BUILD_PATH"
 cd $(dirname $BUILD_PATH)
