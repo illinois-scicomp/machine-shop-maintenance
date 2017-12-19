@@ -5,9 +5,18 @@ set -x
 
 apt-get remove --purge pocl-opencl-icd
 apt autoremove
+apt install libhwloc-dev libz-dev cmake pkg-config
+
+USE_LLVM_PACKAGES=0
+LLVM_VERSION=5.0
+
+if test "$1" = "--use-llvm-packages"; then
+  USE_LLVM_PACKAGES=1
+  shift
+fi
 
 if test "$1" = ""; then
-  echo "usage: $0 branch"
+  echo "usage: $0 [--llvm-packages] branch"
   exit 1
 fi
 
@@ -21,9 +30,15 @@ SCRIPT_DIR="$(dirname "$EXECUTABLE")"
 SCRIPT_DIR="$(readlink -f "$SCRIPT_DIR")"
 
 rm -Rf "$INSTALL_PATH"
-rm -Rf "$BUILD_PATH/pocl-master"
+rm -Rf "$BUILD_PATH"
 
-$SCRIPT_DIR/build-llvm-4.0 "$INSTALL_PATH"
+if [[ "$USE_LLVM_PACKAGES" = 1 ]]; then
+  apt install libclang-$LLVM_VERSION-dev clang-$LLVM_VERSION
+  LLVM_CONFIG="/usr/bin/llvm-config-$LLVM_VERSION"
+else
+  $SCRIPT_DIR/build-llvm-$LLVM_VERSION "$INSTALL_PATH"
+  LLVM_CONFIG="$INSTALL_PATH/bin/llvm-config"
+fi
 
 cd /opt
 git clone https://github.com/pocl/pocl.git "$BUILD_PATH"
@@ -64,8 +79,9 @@ mkdir "$BUILD_PATH/build"
 	cmake \
 		-D CMAKE_INSTALL_PREFIX="$INSTALL_PATH" \
 		-D POCL_INSTALL_ICD_VENDORDIR="$INSTALL_PATH" \
-		-D LLVM_CONFIG=$INSTALL_PATH/bin/llvm-config \
+		-D LLVM_CONFIG=$LLVM_CONFIG \
 		-D CMAKE_BUILD_TYPE=Release \
 		.. &&  \
 	make -j15 install)
 
+echo "$INSTALL_PATH/lib/libpocl.so" > /etc/OpenCL/vendors/pocl-$BRANCH.icd

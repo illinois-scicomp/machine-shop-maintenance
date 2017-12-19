@@ -42,6 +42,36 @@ index fa4cc44..cb9071b 100644
 EOF
 
 patch -p1 < $PATCHFILE
+
+PATCHFILE=/tmp/libstdc++-7-dev.patch
+
+cat > $PATCHFILE <<EOF
+diff --git a/lib/kernel/vecmathlib/floattypes.h b/lib/kernel/vecmathlib/floattypes.h
+index fa4cc449..0a0c94a2 100644
+--- a/lib/kernel/vecmathlib/floattypes.h
++++ b/lib/kernel/vecmathlib/floattypes.h
+@@ -2,15 +2,15 @@
+ #ifndef FLOATTYPES_H
+ #define FLOATTYPES_H
+-
++// HACK for using clang-3.8 with libstdc++-7-dev
++#include <bits/c++config.h>
++#undef _GLIBCXX_USE_FLOAT128
+ #include <cassert>
+ #include <cstdlib>
+-
+ #if !(defined __clang__ || defined __gcc__)
+ #define __builtin_unreachable() (assert(0))
+ #define __builtin_expect(expr, val) (expr)
+ #endif
+-
+ // We expect either 199711L or 201103L
+ #if __cplusplus >= 201103L
+ // C++11 is supported, use it
+EOF
+
+patch -p1 < $PATCHFILE
+
 curl https://gist.githubusercontent.com/mattwala/e8cec37322c2e64a74b847d0458c85a2/raw/36569672eb650e6fb37e43f71db2af199da9b1e0/0001-Fix-clEnqueueFillBuffer-memory-leak.patch | patch -p1
 
 rm -f $PATCHFILE
