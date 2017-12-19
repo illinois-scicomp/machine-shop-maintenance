@@ -1,0 +1,3 @@
+#! /bin/bash
+
+apt install python-requests python-progress python-packaging python-cachecontrol python-lockfile python-distlib python-distro
