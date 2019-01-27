@@ -1,0 +1,7 @@
+Package: gmsh
+Pin: version 3.0.6+dfsg1-3
+Pin-Priority: -1
+
+Package: libgmsh3
+Pin: version 3.0.6+dfsg1-3
+Pin-Priority: -1

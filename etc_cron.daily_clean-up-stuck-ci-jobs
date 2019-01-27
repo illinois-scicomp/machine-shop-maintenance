@@ -1,0 +1,3 @@
+#! /bin/bash
+
+/shared/config/kill-long-running-gitlab-ci-jobs

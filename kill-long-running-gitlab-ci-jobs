@@ -1,0 +1,25 @@
+#! /usr/bin/env python3
+
+import psutil
+from time import time, sleep
+
+kill_timeout = 5
+
+for proc in psutil.process_iter():
+    props = proc.as_dict()
+
+    if props["username"] == "gitlab-runner":
+        running_for_hours = (time() - props["create_time"]) / 3600
+        if running_for_hours >= 2:
+            if "CI_JOB_TOKEN" in props["environ"]:
+                print("Sending SIGTERM to %s..." % props["cmdline"])
+                proc.terminate()
+
+                wait_start = time()
+                while True:
+                    if not proc.is_running():
+                        break
+                    elif time() - wait_start >= kill_timeout:
+                        print("Sending SIGKILL to %s..." % props["cmdline"])
+                        proc.kill()
+                    sleep(0.05)
