@@ -1,5 +1,5 @@
 #! /bin/sh
 
-# *only* run on on stout
+# *only* run on on stout and dunkel
 
-rsync --archive -v /shared /shared-backup
+rsync --archive --delete -v /shared /shared-backup

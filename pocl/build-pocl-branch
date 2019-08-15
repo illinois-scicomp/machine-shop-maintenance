@@ -1,14 +1,8 @@
 #! /bin/bash
 
 set -e
-set -x
-
-apt-get remove --purge pocl-opencl-icd
-apt autoremove
-apt install libhwloc-dev libz-dev cmake pkg-config
 
 USE_LLVM_PACKAGES=0
-LLVM_VERSION=5.0
 
 if test "$1" = "--use-llvm-packages"; then
   USE_LLVM_PACKAGES=1
@@ -16,11 +10,22 @@ if test "$1" = "--use-llvm-packages"; then
 fi
 
 if test "$1" = ""; then
-  echo "usage: $0 [--llvm-packages] branch"
+  echo "usage: $0 [--llvm-packages] branch llvm_ver"
   exit 1
 fi
 
+set -x
+
+apt-get remove --purge pocl-opencl-icd libpocl2 libpocl2-common
+apt autoremove
+apt install libhwloc-dev libz-dev cmake pkg-config
+
 BRANCH="$1"
+LLVM_VERSION="$2"
+
+if test "$LLVM_VERSION" = ""; then
+  LLVM_VERSION=5.0
+fi
 
 BUILD_PATH="/opt/pocl-$BRANCH-build"
 INSTALL_PATH="/opt/pocl-$BRANCH"
@@ -45,34 +50,34 @@ git clone https://github.com/pocl/pocl.git "$BUILD_PATH"
 cd "$BUILD_PATH"
 git checkout "$BRANCH"
 
-PATCHFILE=/tmp/pocl-fix-macros.patch 
-
-cat > $PATCHFILE <<EOF
-diff --git a/lib/kernel/vecmathlib/floattypes.h b/lib/kernel/vecmathlib/floattypes.h
-index fa4cc44..cb9071b 100644
---- a/lib/kernel/vecmathlib/floattypes.h
-+++ b/lib/kernel/vecmathlib/floattypes.h
-@@ -40,6 +40,7 @@ using namespace std;
- #endif
- 
- // Capture libc macros, then undefine them
-+/*
- #ifndef isfinite
- #error "isfinite is not a macro"
- #endif
-@@ -55,6 +56,7 @@ using namespace std;
- #ifndef signbit
- #error "signbit is not a macro"
- #endif
-+*/
- 
- namespace {
- template <typename T> inline int libc_isfinite(T x) { return isfinite(x); }
-EOF
-
-patch -p1 < $PATCHFILE
-
-rm -f $PATCHFILE
+# PATCHFILE=/tmp/pocl-fix-macros.patch 
+# 
+# cat > $PATCHFILE <<EOF
+# diff --git a/lib/kernel/vecmathlib/floattypes.h b/lib/kernel/vecmathlib/floattypes.h
+# index fa4cc44..cb9071b 100644
+# --- a/lib/kernel/vecmathlib/floattypes.h
+# +++ b/lib/kernel/vecmathlib/floattypes.h
+# @@ -40,6 +40,7 @@ using namespace std;
+#  #endif
+#  
+#  // Capture libc macros, then undefine them
+# +/*
+#  #ifndef isfinite
+#  #error "isfinite is not a macro"
+#  #endif
+# @@ -55,6 +56,7 @@ using namespace std;
+#  #ifndef signbit
+#  #error "signbit is not a macro"
+#  #endif
+# +*/
+#  
+#  namespace {
+#  template <typename T> inline int libc_isfinite(T x) { return isfinite(x); }
+# EOF
+# 
+# patch -p1 < $PATCHFILE
+# 
+# rm -f $PATCHFILE
 
 mkdir "$BUILD_PATH/build"
 (cd "$BUILD_PATH/build" && \
