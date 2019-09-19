@@ -31,8 +31,6 @@ function install_extrausers_maint()
 
 ( install_extrausers_maint )
 
-exit 0
-
 # }}}
 
 with_echo mkdir -p /root/.ssh
