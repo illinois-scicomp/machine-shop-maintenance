@@ -41,7 +41,13 @@ cp_from_config /etc/apt/sources.list
 
 cp_from_config /etc/apt/apt.conf.d/02periodic
 cp_from_config /etc/apt/apt.conf.d/50unattended-upgrades
+
 rm -f /etc/apt/preferences.d/prevent-broken-gmsh
+
+if test -L /usr/bin/maxima; then 
+	# old symlink from a bug workaround
+	rm -f /usr/bin/maxima
+fi
 
 with_echo apt update
 with_echo apt install -y aptitude \
@@ -50,7 +56,7 @@ with_echo apt install -y aptitude \
   tmux sudo apt-listbugs apt-listchanges \
   zsh csh tcsh fish \
   moreutils \
-  tig subversion mercurial \
+  tig subversion mercurial git-lfs \
   unattended-upgrades \
   curl python3-yaml \
   libnss-extrausers \
@@ -62,7 +68,7 @@ with_echo apt install -y aptitude \
   prometheus-node-exporter \
   net-tools \
   python{,3}-scipy python{,3}-matplotlib \
-  python{,3}-pyside python-qt4 python{,3}-pyqt5 \
+  python{,3}-pyqt5 \
   flake8 python3-pep8-naming \
   python3-venv python{,3}-virtualenv python{,3}-setuptools python{,3}-pip \
   python3-websockets \
@@ -78,45 +84,43 @@ with_echo apt install -y aptitude \
   build-essential llvm-dev libclang-dev gdb strace ltrace valgrind \
   libblas-dev liblapack-dev libopenblas-dev \
   opensc-pkcs11 \
-  libboost-all-dev
-
-# (not currently due to https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=931337)
-# maxima 
-
-apt-get remove --purge maxima
+  libboost-all-dev \
+  kitty imagemagick \
+  maxima 
 
 # {{{ pocl
 
-rm -f /etc/OpenCl/vendors/pocl-*.icd
+rm -f /etc/OpenCL/vendors/pocl-*.icd
 
 # (not currently due to https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=932707)
 # pocl-opencl-icd 
 # https://github.com/pocl/pocl/issues/757
-cat <<EOF > /etc/apt/preferences.d/prevent-broken-pocl
-Package: pocl-opencl-icd
-Pin: version 1.3*
-Pin-Priority: -1
-
-Package: libpocl2
-Pin: version 1.3*
-Pin-Priority: -1
-
-Package: libpocl2-common
-Pin: version 1.3*
-Pin-Priority: -1
-
-Package: pocl-opencl-icd
-Pin: version 1.2*
-Pin-Priority: 1001
-
-Package: libpocl2
-Pin: version 1.2*
-Pin-Priority: 1001
-
-Package: libpocl2-common
-Pin: version 1.2*
-Pin-Priority: 1001
-EOF
+# cat <<EOF > /etc/apt/preferences.d/prevent-broken-pocl
+# Package: pocl-opencl-icd
+# Pin: version 1.3*
+# Pin-Priority: -1
+# 
+# Package: libpocl2
+# Pin: version 1.3*
+# Pin-Priority: -1
+# 
+# Package: libpocl2-common
+# Pin: version 1.3*
+# Pin-Priority: -1
+# 
+# Package: pocl-opencl-icd
+# Pin: version 1.2*
+# Pin-Priority: 1001
+# 
+# Package: libpocl2
+# Pin: version 1.2*
+# Pin-Priority: 1001
+# 
+# Package: libpocl2-common
+# Pin: version 1.2*
+# Pin-Priority: 1001
+# EOF
+rm -f /etc/apt/preferences.d/prevent-broken-pocl
 
 apt-get install --allow-downgrades -y pocl-opencl-icd libpocl2 libpocl2-common
 
@@ -155,6 +159,9 @@ fi
 # }}}
 
 (cd /etc/cron.daily; rm -f run-smart-tests.sh; ln -s /shared/tools/run-smart-tests.sh)
+
+# clean up after CI jobs that did "pip install"
+rm -Rf /var/lib/gitlab-runner/.local/ 
 
 # (cd /etc/cron.daily; rm -f snapshot-filesystems; ln -s /shared/tools/snapshot-filesystems)
 

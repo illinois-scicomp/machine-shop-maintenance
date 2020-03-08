@@ -3,23 +3,37 @@
 import psutil
 from time import time, sleep
 
-kill_timeout = 5
+def kill_job(proc, props, kill_timeout=5):
+    print("Sending SIGTERM to %d: %s..." % (props["pid"], props["cmdline"]))
+    proc.terminate()
 
-for proc in psutil.process_iter():
-    props = proc.as_dict()
+    max_kill_attempts = 50
+    wait_start = time()
+    for i_attempt in range(max_kill_attempts):
+        if not proc.is_running():
+            break
+        elif time() - wait_start >= kill_timeout:
+            print("Sending SIGKILL (%d/%d) to %d: %s..." % (
+                i_attempt, max_kill_attempts, props["pid"], props["cmdline"]))
+            proc.kill()
+        sleep(0.05)
 
-    if props["username"] == "gitlab-runner":
-        running_for_hours = (time() - props["create_time"]) / 3600
-        if running_for_hours >= 2:
-            if "CI_JOB_TOKEN" in props["environ"]:
-                print("Sending SIGTERM to %s..." % props["cmdline"])
-                proc.terminate()
 
-                wait_start = time()
-                while True:
-                    if not proc.is_running():
-                        break
-                    elif time() - wait_start >= kill_timeout:
-                        print("Sending SIGKILL to %s..." % props["cmdline"])
-                        proc.kill()
-                    sleep(0.05)
+def main():
+    for proc in psutil.process_iter():
+        try:
+            props = proc.as_dict()
+        except psutil.NoSuchProcess:
+            continue
+
+        if props["username"] == "gitlab-runner":
+            running_for_hours = (time() - props["create_time"]) / 3600
+            if running_for_hours >= 2:
+                if "CI_JOB_TOKEN" in props["environ"]:
+                    try:
+                        kill_job(proc, props)
+                    except psutil.NoSuchProcess:
+                        pass
+
+if __name__ == "__main__":
+    main()
