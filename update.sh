@@ -162,7 +162,7 @@ fi
 
 # (cd /etc/cron.daily; rm -f snapshot-filesystems; ln -s /shared/tools/snapshot-filesystems)
 
-(cd /etc/cron.weekly; rm -f delete-gitlab-runner-cache; ln -s /shared/tools/delete-gitlab-runner-cache)
+(cd /etc/cron.weekly; rm -f clean-up-after-gitlab-runner; ln -s /shared/tools/clean-up-after-gitlab-runner)
 
 echo "COMPLETED SUCCESSFULLY"
 
