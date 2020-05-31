@@ -67,10 +67,10 @@ with_echo apt install -y aptitude \
   python3-psutil \
   prometheus-node-exporter \
   net-tools \
-  python{,3}-scipy python{,3}-matplotlib \
-  python{,3}-pyqt5 \
+  python3-scipy python3-matplotlib \
+  python3-pyqt5 \
   flake8 python3-pep8-naming \
-  python3-venv python{,3}-virtualenv python{,3}-setuptools python{,3}-pip \
+  python3-venv python3-virtualenv python-pip-whl \
   python3-websockets \
   silversearcher-ag \
   texlive-xetex texlive-publishers texlive-science texlive-bibtex-extra biber \
@@ -90,7 +90,7 @@ with_echo apt install -y aptitude \
 
 # {{{ pocl
 
-rm -f /etc/OpenCL/vendors/pocl-*.icd
+rm -f /etc/OpenCL/vendors/pocl*.icd
 
 # (not currently due to https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=932707)
 # pocl-opencl-icd 
@@ -122,14 +122,11 @@ rm -f /etc/OpenCL/vendors/pocl-*.icd
 # EOF
 rm -f /etc/apt/preferences.d/prevent-broken-pocl
 
-apt-get install --allow-downgrades -y pocl-opencl-icd libpocl2 libpocl2-common
+#apt-get install --allow-downgrades -y pocl-opencl-icd libpocl2 libpocl2-common
+
+/shared/config/pocl/build-pocl-branch
 
 # }}}
-
-echo "Clearing gitlab runner cache"
-rm -Rf /var/lib/gitlab-runner/.cache/
-echo "Clearing gitlab runner cache: done"
-
 
 mkdir -p /etc/scicomp-users
 if [[ "$(hostname)" != "porter" ]]; then

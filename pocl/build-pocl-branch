@@ -2,16 +2,11 @@
 
 set -e
 
-USE_LLVM_PACKAGES=0
+USE_LLVM_PACKAGES=1
 
-if test "$1" = "--use-llvm-packages"; then
-  USE_LLVM_PACKAGES=1
+if test "$1" = "--do-not-use-llvm-packages"; then
+  USE_LLVM_PACKAGES=0
   shift
-fi
-
-if test "$1" = ""; then
-  echo "usage: $0 [--llvm-packages] branch llvm_ver"
-  exit 1
 fi
 
 set -x
@@ -20,15 +15,29 @@ apt-get remove --purge pocl-opencl-icd libpocl2 libpocl2-common
 apt autoremove
 apt install libhwloc-dev libz-dev cmake pkg-config
 
-BRANCH="$1"
+POCL_BRANCH="$1"
 LLVM_VERSION="$2"
 
-if test "$LLVM_VERSION" = ""; then
-  LLVM_VERSION=5.0
+if test -c /dev/nvidiactl; then
+	POCL_GIT_URL="https://github.com/isuruf/pocl.git"
+	if test "$POCL_BRANCH" = ""; then
+		POCL_BRANCH="1.5_and_patches"
+	fi
+	POCL_EXTRA_FLAGS="-DENABLE_CUDA=ON"
+else
+	POCL_GIT_URL="https://github.com/pocl/pocl.git"
+	if test "$POCL_BRANCH" = ""; then
+		POCL_BRANCH="release_1_5"
+	fi
+	POCL_EXTRA_FLAGS=""
 fi
 
-BUILD_PATH="/opt/pocl-$BRANCH-build"
-INSTALL_PATH="/opt/pocl-$BRANCH"
+if test "$LLVM_VERSION" = ""; then
+  LLVM_VERSION=10
+fi
+
+BUILD_PATH="/opt/pocl-$POCL_BRANCH-build"
+INSTALL_PATH="/opt/pocl-$POCL_BRANCH"
 
 EXECUTABLE="$(readlink -f "$0")"
 SCRIPT_DIR="$(dirname "$EXECUTABLE")"
@@ -38,7 +47,7 @@ rm -Rf "$INSTALL_PATH"
 rm -Rf "$BUILD_PATH"
 
 if [[ "$USE_LLVM_PACKAGES" = 1 ]]; then
-  apt install libclang-$LLVM_VERSION-dev clang-$LLVM_VERSION
+  apt install libclang-$LLVM_VERSION-dev clang-$LLVM_VERSION libclang-cpp$LLVM_VERSION-dev
   LLVM_CONFIG="/usr/bin/llvm-config-$LLVM_VERSION"
 else
   $SCRIPT_DIR/build-llvm-$LLVM_VERSION "$INSTALL_PATH"
@@ -46,38 +55,9 @@ else
 fi
 
 cd /opt
-git clone https://github.com/pocl/pocl.git "$BUILD_PATH"
+git clone "$POCL_GIT_URL" "$BUILD_PATH"
 cd "$BUILD_PATH"
-git checkout "$BRANCH"
-
-# PATCHFILE=/tmp/pocl-fix-macros.patch 
-# 
-# cat > $PATCHFILE <<EOF
-# diff --git a/lib/kernel/vecmathlib/floattypes.h b/lib/kernel/vecmathlib/floattypes.h
-# index fa4cc44..cb9071b 100644
-# --- a/lib/kernel/vecmathlib/floattypes.h
-# +++ b/lib/kernel/vecmathlib/floattypes.h
-# @@ -40,6 +40,7 @@ using namespace std;
-#  #endif
-#  
-#  // Capture libc macros, then undefine them
-# +/*
-#  #ifndef isfinite
-#  #error "isfinite is not a macro"
-#  #endif
-# @@ -55,6 +56,7 @@ using namespace std;
-#  #ifndef signbit
-#  #error "signbit is not a macro"
-#  #endif
-# +*/
-#  
-#  namespace {
-#  template <typename T> inline int libc_isfinite(T x) { return isfinite(x); }
-# EOF
-# 
-# patch -p1 < $PATCHFILE
-# 
-# rm -f $PATCHFILE
+git checkout "$POCL_BRANCH"
 
 mkdir "$BUILD_PATH/build"
 (cd "$BUILD_PATH/build" && \
@@ -86,7 +66,8 @@ mkdir "$BUILD_PATH/build"
 		-D POCL_INSTALL_ICD_VENDORDIR="$INSTALL_PATH" \
 		-D LLVM_CONFIG=$LLVM_CONFIG \
 		-D CMAKE_BUILD_TYPE=Release \
+		$POCL_EXTRA_FLAGS \
 		.. &&  \
 	make -j15 install)
 
-echo "$INSTALL_PATH/lib/libpocl.so" > /etc/OpenCL/vendors/pocl-$BRANCH.icd
+echo "$INSTALL_PATH/lib/libpocl.so" > /etc/OpenCL/vendors/pocl-$POCL_BRANCH.icd
