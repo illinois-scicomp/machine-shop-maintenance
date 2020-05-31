@@ -1,0 +1,4 @@
+#! /bin/bash
+
+rm -Rf /var/lib/gitlab-runner/.cache
+rm -Rf /var/lib/gitlab-runner/.local

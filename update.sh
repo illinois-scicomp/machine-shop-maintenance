@@ -160,10 +160,9 @@ fi
 
 (cd /etc/cron.daily; rm -f run-smart-tests.sh; ln -s /shared/tools/run-smart-tests.sh)
 
-# clean up after CI jobs that did "pip install"
-rm -Rf /var/lib/gitlab-runner/.local/ 
-
 # (cd /etc/cron.daily; rm -f snapshot-filesystems; ln -s /shared/tools/snapshot-filesystems)
+
+(cd /etc/cron.weekly; rm -f delete-gitlab-runner-cache; ln -s /shared/tools/delete-gitlab-runner-cache)
 
 echo "COMPLETED SUCCESSFULLY"
 
