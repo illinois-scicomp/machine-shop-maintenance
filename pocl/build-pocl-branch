@@ -66,4 +66,7 @@ mkdir "$BUILD_PATH/build"
 		.. &&  \
 	make -j15 install)
 
+# delete other POCL ICD files, to avoid conflicts
+rm -f /etc/OpenCL/vendors/pocl*.icd
+
 echo "$INSTALL_PATH/lib/libpocl.so" > /etc/OpenCL/vendors/pocl-$POCL_BRANCH.icd
