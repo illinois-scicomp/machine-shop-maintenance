@@ -18,17 +18,13 @@ apt install libhwloc-dev libz-dev cmake pkg-config
 POCL_BRANCH="$1"
 LLVM_VERSION="$2"
 
+POCL_GIT_URL="https://github.com/isuruf/pocl.git"
+if test "$POCL_BRANCH" = ""; then
+	POCL_BRANCH="1.5_and_patches"
+fi
 if test -c /dev/nvidiactl; then
-	POCL_GIT_URL="https://github.com/isuruf/pocl.git"
-	if test "$POCL_BRANCH" = ""; then
-		POCL_BRANCH="1.5_and_patches"
-	fi
 	POCL_EXTRA_FLAGS="-DENABLE_CUDA=ON"
 else
-	POCL_GIT_URL="https://github.com/pocl/pocl.git"
-	if test "$POCL_BRANCH" = ""; then
-		POCL_BRANCH="release_1_5"
-	fi
 	POCL_EXTRA_FLAGS=""
 fi
 
