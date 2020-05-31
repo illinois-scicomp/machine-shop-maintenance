@@ -1,11 +1,11 @@
 # Bill's, Luke's, Edgar's, and Andreas's Machine Shop
 
-* [Admin notes](https://gitlab.tiker.net/inducer/machine-shop-maintenance/wikis/Admin-Notes)
-* [User notes](https://gitlab.tiker.net/inducer/machine-shop-maintenance/wikis/user-notes)
+* [Admin notes](https://github.com/illinois-scicomp/machine-shop-maintenance/wiki/Admin-notes)
+* [User notes](https://github.com/illinois-scicomp/machine-shop-maintenance/wiki/User-notes)
 
 ## Issues
 
-See [current issues](https://gitlab.tiker.net/inducer/machine-shop-maintenance/issues) with the cluster.
+See [current issues](https://github.com/illinois-scicomp/machine-shop-maintenance/issues) with the cluster.
 
 ## Monitoring (only on campus or via VPN)
 
