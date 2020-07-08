@@ -55,6 +55,32 @@ git clone "$POCL_GIT_URL" "$BUILD_PATH"
 cd "$BUILD_PATH"
 git checkout "$POCL_BRANCH"
 
+# https://github.com/pocl/pocl/issues/757#issuecomment-655275263
+cat > par-meta.diff <<EOF
+diff --git a/lib/llvmopencl/ParallelRegion.cc b/lib/llvmopencl/ParallelRegion.cc
+index 187e8b52..4a635377 100644
+--- a/lib/llvmopencl/ParallelRegion.cc
++++ b/lib/llvmopencl/ParallelRegion.cc
+@@ -474,7 +474,14 @@ void ParallelRegion::AddParallelLoopMetadata(llvm::MDNode *Identifier) {
+     for (BasicBlock::iterator ii = bb->begin(), ee = bb->end();
+          ii != ee; ii++) {
+ 
+-      if (ii->mayReadOrWriteMemory()) {
++      if (ii->mayReadFromMemory()) {
++        // Parallel loop metadata on memory reads also implies that
++        // if-conversion (i.e., speculative execution within a loop
++        // iteration) is safe. This isn't guaranteed.
++        continue;
++      }
++
++      if (ii->mayWriteToMemory()) {
+         MDNode *NewMD = MDNode::get(bb->getContext(), Identifier);
+         MDNode *OldMD = ii->getMetadata(PARALLEL_MD_NAME);
+         if (OldMD != nullptr) {
+EOF
+
+patch -p1 < par-meta.diff
+
 mkdir "$BUILD_PATH/build"
 (cd "$BUILD_PATH/build" && \
 	cmake \
