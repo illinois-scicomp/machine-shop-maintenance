@@ -67,6 +67,7 @@ with_echo apt install -y aptitude \
   python3-psutil \
   prometheus-node-exporter \
   net-tools \
+  pypy3 pypy3-dev \
   python3-scipy python3-matplotlib \
   python3-pyqt5 \
   flake8 python3-pep8-naming \
@@ -159,7 +160,7 @@ fi
 
 # (cd /etc/cron.daily; rm -f snapshot-filesystems; ln -s /shared/tools/snapshot-filesystems)
 
-(cd /etc/cron.weekly; rm -f clean-up-after-gitlab-runner; ln -s /shared/tools/clean-up-after-gitlab-runner)
+(cd /etc/cron.weekly; rm -f clean-up-after-gitlab-runner; ln -s /shared/config/clean-up-after-gitlab-runner)
 
 echo "COMPLETED SUCCESSFULLY"
 
