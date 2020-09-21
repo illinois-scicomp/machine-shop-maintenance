@@ -25,7 +25,7 @@ function install_extrausers_maint()
 	if test -d extrausers-maint; then
 		cd extrausers-maint; git pull https://github.com/inducer/extrausers-maint master
 	else
-		cd extrausers-maint; git clone https://github.com/inducer/extrausers-maint
+		git clone https://github.com/inducer/extrausers-maint
 	fi
 }
 
@@ -91,6 +91,7 @@ with_echo apt install -y aptitude \
 
 # {{{ pocl
 
+mkdir -p /etc/OpenCL/vendors
 rm -f /etc/OpenCL/vendors/pocl*.icd
 
 # (not currently due to https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=932707)
