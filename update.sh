@@ -51,6 +51,7 @@ fi
 
 with_echo apt update
 with_echo apt install -y aptitude \
+  spectre-meltdown-checker intel-microcode \
   etckeeper logrotate \
   htop iotop iftop tcpdump ncdu rsync unison-all \
   tmux sudo apt-listbugs apt-listchanges \
