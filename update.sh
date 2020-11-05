@@ -51,6 +51,9 @@ fi
 
 with_echo apt update
 with_echo apt install -y aptitude \
+  netcat-traditional elinks \
+  iucode-tool \
+  linux-perf \
   etckeeper logrotate \
   htop iotop iftop tcpdump ncdu rsync unison-all \
   tmux sudo apt-listbugs apt-listchanges \
@@ -63,10 +66,11 @@ with_echo apt install -y aptitude \
   mlocate \
   exim4 \
   libgmp-dev libmpfr-dev \
+  libpq-dev \
   vim-nox emacs \
   python3-psutil \
   prometheus-node-exporter \
-  net-tools \
+  net-tools acl \
   pypy3 pypy3-dev \
   python3-scipy python3-matplotlib \
   python3-pyqt5 \
@@ -76,6 +80,7 @@ with_echo apt install -y aptitude \
   silversearcher-ag \
   texlive-xetex texlive-publishers texlive-science texlive-bibtex-extra biber \
   mc fzf \
+  graphviz \
   gmsh occt-draw occt-misc \
   libopenmpi-dev openmpi-common mpich libmpich-dev \
   systemd-coredump \
@@ -87,7 +92,10 @@ with_echo apt install -y aptitude \
   opensc-pkcs11 \
   libboost-all-dev \
   kitty imagemagick \
-  maxima 
+  maxima \
+  bison flex \
+  npm \
+  octave
 
 # {{{ pocl
 
