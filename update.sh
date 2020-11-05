@@ -170,6 +170,8 @@ fi
 
 (cd /etc/cron.weekly; rm -f clean-up-after-gitlab-runner; ln -s /shared/config/clean-up-after-gitlab-runner)
 
+(cd /etc/cron.hourly; rm -f monitor-ipmi-log; ln -s /shared/config/monitor-ipmi-log)
+
 echo "COMPLETED SUCCESSFULLY"
 
 # vim: foldmethod=marker

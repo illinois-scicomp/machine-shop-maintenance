@@ -1,0 +1,28 @@
+#! /bin/bash
+
+set -e
+
+if ! command -v ipmitool &> /dev/null; then
+	exit
+fi
+
+MYPATH=/var/cache/sciomp-ipmi-log-monitor
+mkdir -p "$MYPATH"
+
+NEWLOG="$MYPATH/new.txt"
+OLDLOG="$MYPATH/old.txt"
+
+ipmitool sel elist last 15 > "$NEWLOG"
+touch "$OLDLOG"
+
+if ! cmp "$NEWLOG" "$OLDLOG"; then
+	echo -------------------------------------------------------------------
+	echo "Changes were found in the IPMI event log"
+	echo CHANGES: ----------------------------------------------------------
+	diff -u "$OLDLOG" "$NEWLOG" || true
+	echo ENTIRE LOG: -------------------------------------------------------
+	cat "$NEWLOG"
+	echo -------------------------------------------------------------------
+
+	cp "$NEWLOG" "$OLDLOG"
+fi
