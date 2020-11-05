@@ -5,8 +5,8 @@ set -x
 
 rm -f /etc/OpenCL/vendors/intel*.icd
 
-#VERSION=oclcpuexp-2019.8.7.0.0725_rel
-VERSION=oclcpuexp-2020.10.6.0.4_rel
+VERSION=oclcpuexp-2019.8.7.0.0725_rel
+#VERSION=oclcpuexp-2020.10.6.0.4_rel
 
 OCLPATH="/opt/intel-$VERSION"
 
