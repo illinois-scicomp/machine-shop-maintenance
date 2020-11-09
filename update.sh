@@ -41,6 +41,7 @@ cp_from_config /etc/apt/sources.list
 
 cp_from_config /etc/apt/apt.conf.d/02periodic
 cp_from_config /etc/apt/apt.conf.d/50unattended-upgrades
+cp_from_config /etc/sudoers.d/scicomp-extrasudo
 
 rm -f /etc/apt/preferences.d/prevent-broken-gmsh
 
@@ -55,6 +56,7 @@ with_echo apt install -y aptitude \
   netcat-traditional elinks \
   iucode-tool \
   linux-perf \
+  rsync \
   etckeeper logrotate \
   htop iotop iftop tcpdump ncdu rsync unison-all \
   tmux sudo apt-listbugs apt-listchanges \
