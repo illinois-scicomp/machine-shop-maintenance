@@ -29,7 +29,8 @@ else
 fi
 
 if test "$LLVM_VERSION" = ""; then
-  LLVM_VERSION=11
+  # https://github.com/pocl/pocl/issues/893
+  LLVM_VERSION=10
 fi
 
 BUILD_PATH="/opt/pocl-$POCL_BRANCH-build"
