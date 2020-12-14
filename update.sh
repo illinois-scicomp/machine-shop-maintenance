@@ -58,7 +58,7 @@ with_echo apt install -y aptitude \
   linux-perf \
   rsync \
   etckeeper logrotate \
-  htop iotop iftop tcpdump mtr ncdu rsync unison-all \
+  htop iotop iftop tcpdump mtr ncdu rsync unison-all unison-all-gtk \
   tmux sudo apt-listbugs apt-listchanges \
   zsh csh tcsh fish \
   moreutils \
