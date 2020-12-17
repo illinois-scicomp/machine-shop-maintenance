@@ -90,7 +90,8 @@ with_echo apt install -y aptitude \
   likwid \
   ffmpeg \
   ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind \
-  build-essential llvm-dev libclang-dev gdb strace ltrace valgrind \
+  build-essential packaging-dev \
+  llvm-dev libclang-dev gdb strace ltrace valgrind \
   libblas-dev liblapack-dev libopenblas-dev \
   opensc-pkcs11 \
   libboost-all-dev \
