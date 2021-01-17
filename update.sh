@@ -87,7 +87,7 @@ with_echo apt install -y aptitude \
   gmsh occt-draw occt-misc \
   libopenmpi-dev openmpi-common mpich libmpich-dev \
   systemd-coredump \
-  likwid kcachegrind \
+  likwid kcachegrind cpufrequtils \
   ffmpeg \
   ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind \
   build-essential packaging-dev \
