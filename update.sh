@@ -64,27 +64,27 @@ with_echo apt install -y aptitude \
   moreutils \
   tig subversion mercurial git-lfs \
   unattended-upgrades \
-  curl python3-yaml \
+  curl \
   libnss-extrausers \
   mlocate \
   exim4 \
   libgmp-dev libmpfr-dev \
   libpq-dev \
   vim-nox emacs \
-  python3-psutil \
+  python3-psutil python3-yaml python3-websockets \
   prometheus-node-exporter \
   net-tools acl \
   pypy3 pypy3-dev \
   python3-scipy python3-matplotlib \
+  swig \
   python3-pyqt5 \
   flake8 python3-pep8-naming \
   python3-venv python3-virtualenv python-pip-whl \
-  python3-websockets \
-  silversearcher-ag \
+  silversearcher-ag ripgrep fzf \
   texlive-xetex texlive-publishers texlive-science texlive-bibtex-extra biber \
-  mc fzf \
+  mc \
   graphviz \
-  gmsh occt-draw occt-misc \
+  gmsh occt-draw occt-misc liboce-ocaf-dev \
   libopenmpi-dev openmpi-common mpich libmpich-dev \
   systemd-coredump \
   likwid kcachegrind cpufrequtils \
