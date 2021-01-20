@@ -55,7 +55,6 @@ with_echo apt install -y aptitude \
   spectre-meltdown-checker \
   netcat-traditional elinks \
   iucode-tool \
-  linux-perf \
   rsync \
   etckeeper logrotate \
   htop iotop iftop tcpdump mtr ncdu rsync unison-all unison-all-gtk \
@@ -87,7 +86,7 @@ with_echo apt install -y aptitude \
   gmsh occt-draw occt-misc liboce-ocaf-dev \
   libopenmpi-dev openmpi-common mpich libmpich-dev \
   systemd-coredump \
-  likwid kcachegrind cpufrequtils \
+  likwid kcachegrind cpufrequtils linux-perf numactl \
   ffmpeg \
   ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind \
   build-essential packaging-dev \
