@@ -68,7 +68,7 @@ with_echo apt install -y aptitude \
   mlocate \
   exim4 \
   libgmp-dev libmpfr-dev \
-  libpq-dev \
+  libpq-dev libjemalloc-dev \
   vim-nox emacs \
   python3-psutil python3-yaml python3-websockets \
   prometheus-node-exporter \
