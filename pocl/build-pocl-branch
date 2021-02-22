@@ -29,8 +29,7 @@ else
 fi
 
 if test "$LLVM_VERSION" = ""; then
-  # https://github.com/pocl/pocl/issues/893
-  LLVM_VERSION=10
+  LLVM_VERSION=11
 fi
 
 BUILD_PATH="/opt/pocl-$POCL_BRANCH-build"
@@ -55,6 +54,8 @@ cd /opt
 git clone "$POCL_GIT_URL" "$BUILD_PATH"
 cd "$BUILD_PATH"
 git checkout "$POCL_BRANCH"
+
+curl https://patch-diff.githubusercontent.com/raw/pocl/pocl/pull/904.diff | patch -p1
 
 mkdir "$BUILD_PATH/build"
 (cd "$BUILD_PATH/build" && \
