@@ -21,12 +21,11 @@ function cp_from_config()
 
 function install_extrausers_maint()
 {
-	cd /opt/
-	if test -d extrausers-maint; then
-		cd extrausers-maint; git pull https://github.com/inducer/extrausers-maint master
-	else
-		git clone https://github.com/inducer/extrausers-maint
-	fi
+        cd /opt/
+        if test -d extrausers-maint; then
+                rm -Rf /opt/extrausers-maint
+        fi
+        git clone https://github.com/inducer/extrausers-maint
 }
 
 ( install_extrausers_maint )
@@ -45,9 +44,9 @@ cp_from_config /etc/sudoers.d/scicomp-extrasudo
 
 rm -f /etc/apt/preferences.d/prevent-broken-gmsh
 
-if test -L /usr/bin/maxima; then 
-	# old symlink from a bug workaround
-	rm -f /usr/bin/maxima
+if test -L /usr/bin/maxima; then
+        # old symlink from a bug workaround
+        rm -f /usr/bin/maxima
 fi
 
 with_echo apt update
@@ -106,29 +105,29 @@ mkdir -p /etc/OpenCL/vendors
 rm -f /etc/OpenCL/vendors/pocl*.icd
 
 # (not currently due to https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=932707)
-# pocl-opencl-icd 
+# pocl-opencl-icd
 # https://github.com/pocl/pocl/issues/757
 # cat <<EOF > /etc/apt/preferences.d/prevent-broken-pocl
 # Package: pocl-opencl-icd
 # Pin: version 1.3*
 # Pin-Priority: -1
-# 
+#
 # Package: libpocl2
 # Pin: version 1.3*
 # Pin-Priority: -1
-# 
+#
 # Package: libpocl2-common
 # Pin: version 1.3*
 # Pin-Priority: -1
-# 
+#
 # Package: pocl-opencl-icd
 # Pin: version 1.2*
 # Pin-Priority: 1001
-# 
+#
 # Package: libpocl2
 # Pin: version 1.2*
 # Pin-Priority: 1001
-# 
+#
 # Package: libpocl2-common
 # Pin: version 1.2*
 # Pin-Priority: 1001
@@ -161,9 +160,9 @@ cp_from_config /etc/cron.daily/clean-up-stuck-ci-jobs
 # https://developer.nvidia.com/nvidia-development-tools-solutions-ERR_NVGPUCTRPERM-permission-issue-performance-counters
 NVMODCONF=/etc/modprobe.d/uiuc-enable-profiling-for-non-admins.conf
 if test -c /dev/nvidiactl; then
-	echo 'options nvidia "NVreg_RestrictProfilingToAdminUsers=0"' > "$NVMODCONF"
+        echo 'options nvidia "NVreg_RestrictProfilingToAdminUsers=0"' > "$NVMODCONF"
 else
-	rm -f "$NVMODCONF"
+        rm -f "$NVMODCONF"
 fi
 
 # }}}
