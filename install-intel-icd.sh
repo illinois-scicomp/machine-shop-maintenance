@@ -5,6 +5,7 @@ set -x
 
 rm -f /etc/OpenCL/vendors/intel*.icd
 
+cd /opt
 
 # https://github.com/intel/llvm/releases/tag/oclcpuexp-2019.8.7.0.0725_rel
 VERSION=oclcpuexp-2019.8.7.0.0725_rel
