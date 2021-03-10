@@ -167,7 +167,8 @@ fi
 
 # }}}
 
-(cd /etc/cron.daily; rm -f run-smart-tests{,.sh}; ln -s /shared/config/run-smart-tests)
+(cd /etc/cron.daily; rm -f run-smart-tests{,.sh})
+(cd /etc/cron.weekly; rm -f run-smart-tests; ln -s /shared/config/run-smart-tests)
 
 # (cd /etc/cron.daily; rm -f snapshot-filesystems; ln -s /shared/tools/snapshot-filesystems)
 
