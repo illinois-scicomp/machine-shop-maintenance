@@ -3,6 +3,10 @@
 set -e
 set -x
 
+# When modifying this file: be mindful that it is also being used
+# in Loopy's Github CI.
+
+mkdir -p /etc/OpenCL/vendors
 rm -f /etc/OpenCL/vendors/intel*.icd
 
 cd /opt
