@@ -35,7 +35,7 @@ chmod go+rX -R "$OCLPATH"
 
 if test "$TBB_VERSION"; then 
   TBB_FILENAME="oneapi-tbb-$TBB_VERSION-lin.tgz"
-  curl -L -O "https://github.com/intel/llvm/releases/download/$RELEASE/$VERSION.tar.gz"
+  curl -L -O "https://github.com/oneapi-src/oneTBB/releases/download/v$TBB_VERSION/oneapi-tbb-$TBB_VERSION-lin.tgz"
   tar x --strip-components=4 -C $OCLPATH/x64  -f "$TBB_FILENAME" oneapi-tbb-$TBB_VERSION/lib/intel64/gcc4.8/
   rm "$TBB_FILENAME"
 fi
