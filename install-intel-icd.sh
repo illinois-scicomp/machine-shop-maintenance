@@ -30,13 +30,13 @@ fi
 
 curl -L -O "https://github.com/intel/llvm/releases/download/$RELEASE/$VERSION.tar.gz"
 mkdir -p "$OCLPATH"
-tar xvz -C "$OCLPATH" -f $VERSION.tar.gz
+tar xz -C "$OCLPATH" -f $VERSION.tar.gz
 chmod go+rX -R "$OCLPATH"
 
 if test "$TBB_VERSION"; then 
   TBB_FILENAME="oneapi-tbb-$TBB_VERSION-lin.tgz"
   curl -L -O "https://github.com/intel/llvm/releases/download/$RELEASE/$VERSION.tar.gz"
-  tar xv --strip-components=4 -C $OCLPATH/x64  -f "$TBB_FILENAME" oneapi-tbb-$TBB_VERSION/lib/intel64/gcc4.8/
+  tar x --strip-components=4 -C $OCLPATH/x64  -f "$TBB_FILENAME" oneapi-tbb-$TBB_VERSION/lib/intel64/gcc4.8/
   rm "$TBB_FILENAME"
 fi
 
