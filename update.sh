@@ -82,7 +82,8 @@ with_echo apt install -y aptitude \
   texlive-xetex texlive-publishers texlive-science texlive-bibtex-extra biber \
   mc \
   graphviz \
-  gmsh occt-draw occt-misc liboce-ocaf-dev \
+  gmsh occt-draw occt-misc \
+  libocct-{ocaf,data-exchange,draw,foundation,modeling-algorithms,modeling-data,visualization}-dev \
   libopenmpi-dev openmpi-common mpich libmpich-dev \
   systemd-coredump \
   likwid kcachegrind cpufrequtils linux-perf numactl \
