@@ -86,7 +86,7 @@ with_echo apt install -y aptitude \
   libocct-{ocaf,data-exchange,draw,foundation,modeling-algorithms,modeling-data,visualization}-dev \
   libopenmpi-dev openmpi-common mpich libmpich-dev \
   systemd-coredump \
-  likwid kcachegrind cpufrequtils linux-perf numactl \
+  likwid kcachegrind cpufrequtils linux-perf numactl libunwind-dev \
   ffmpeg \
   ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind \
   build-essential packaging-dev \
