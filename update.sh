@@ -57,7 +57,7 @@ with_echo apt install -y aptitude \
   rsync \
   etckeeper logrotate \
   htop iotop iftop tcpdump mtr ncdu rsync unison-all unison-all-gtk \
-  tmux tmate sudo apt-listbugs apt-listchanges \
+  'tmux=3.2a-1' tmate sudo apt-listbugs apt-listchanges \
   zsh csh tcsh fish \
   moreutils \
   tig subversion mercurial git-lfs \
