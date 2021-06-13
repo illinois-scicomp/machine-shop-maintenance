@@ -77,7 +77,7 @@ with_echo apt install -y aptitude \
   swig \
   python3-pyqt5 \
   flake8 python3-pep8-naming \
-  python3-venv python3-virtualenv python-pip-whl \
+  python3-dbg python3-venv python3-virtualenv python-pip-whl \
   silversearcher-ag ripgrep fzf \
   texlive-xetex texlive-publishers texlive-science texlive-bibtex-extra biber \
   mc \
