@@ -20,13 +20,7 @@ LLVM_VERSION="$2"
 
 POCL_GIT_URL="https://github.com/pocl/pocl.git"
 if test "$POCL_BRANCH" = ""; then
-  # 1.7 causes CUDA failures:
-  # Error(s) while linking:
-  # Cannot find symbol _Z14_cl_atomic_maxPU3AS1Vii in kernel library
-  #
-  # (options: -I /shared/home/andreask_work/src/pyopencl/pyopencl/cl)
-  # (source saved as /tmp/tmp9nch8o5h.cl)
-
+  # https://github.com/pocl/pocl/issues/955
   POCL_BRANCH="release_1_6"
 fi
 if test -c /dev/nvidiactl; then
