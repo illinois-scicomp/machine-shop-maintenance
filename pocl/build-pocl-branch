@@ -20,16 +20,23 @@ LLVM_VERSION="$2"
 
 POCL_GIT_URL="https://github.com/pocl/pocl.git"
 if test "$POCL_BRANCH" = ""; then
-	POCL_BRANCH="release_1_7"
+  # 1.7 causes CUDA failures:
+  # Error(s) while linking:
+  # Cannot find symbol _Z14_cl_atomic_maxPU3AS1Vii in kernel library
+  #
+  # (options: -I /shared/home/andreask_work/src/pyopencl/pyopencl/cl)
+  # (source saved as /tmp/tmp9nch8o5h.cl)
+
+  POCL_BRANCH="release_1_6"
 fi
 if test -c /dev/nvidiactl; then
-	POCL_EXTRA_FLAGS="-DENABLE_CUDA=ON"
+  POCL_EXTRA_FLAGS="-DENABLE_CUDA=ON"
 else
-	POCL_EXTRA_FLAGS=""
+  POCL_EXTRA_FLAGS=""
 fi
 
 if test "$LLVM_VERSION" = ""; then
-  LLVM_VERSION=12
+  LLVM_VERSION=11
 fi
 
 BUILD_PATH="/opt/pocl-$POCL_BRANCH-build"
@@ -59,16 +66,18 @@ cd "$BUILD_PATH"
 
 mkdir "$BUILD_PATH/build"
 (cd "$BUILD_PATH/build" && \
-	cmake \
-		-D CMAKE_INSTALL_PREFIX="$INSTALL_PATH" \
-		-D POCL_INSTALL_ICD_VENDORDIR="$INSTALL_PATH" \
-		-D LLVM_CONFIG=$LLVM_CONFIG \
-		-D CMAKE_BUILD_TYPE=Release \
-		$POCL_EXTRA_FLAGS \
-		.. &&  \
-	make -j15 install)
+        cmake \
+                -D CMAKE_INSTALL_PREFIX="$INSTALL_PATH" \
+                -D POCL_INSTALL_ICD_VENDORDIR="$INSTALL_PATH" \
+                -D LLVM_CONFIG=$LLVM_CONFIG \
+                -D CMAKE_BUILD_TYPE=Release \
+                $POCL_EXTRA_FLAGS \
+                .. &&  \
+        make -j15 install)
 
 # delete other POCL ICD files, to avoid conflicts
 rm -f /etc/OpenCL/vendors/pocl*.icd
 
 echo "$INSTALL_PATH/lib/libpocl.so" > /etc/OpenCL/vendors/pocl-$POCL_BRANCH.icd
+
+# vim: sw=2
