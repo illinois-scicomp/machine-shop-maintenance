@@ -56,7 +56,7 @@ git clone --depth 1 "$POCL_GIT_URL" "$BUILD_PATH" -b "$POCL_BRANCH"
 cd "$BUILD_PATH"
 
 # no longer needed for 1.7
-#curl https://patch-diff.githubusercontent.com/raw/pocl/pocl/pull/904.diff | patch -p1
+curl https://patch-diff.githubusercontent.com/raw/pocl/pocl/pull/904.diff | patch -p1
 
 mkdir "$BUILD_PATH/build"
 (cd "$BUILD_PATH/build" && \
