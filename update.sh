@@ -177,6 +177,8 @@ fi
 
 (cd /etc/cron.hourly; rm -f monitor-ipmi-log; ln -s /shared/config/monitor-ipmi-log)
 
+/shared/config/docker-cleanup.sh
+
 echo "COMPLETED SUCCESSFULLY"
 
 # vim: foldmethod=marker
