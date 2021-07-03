@@ -21,7 +21,7 @@ LLVM_VERSION="$2"
 POCL_GIT_URL="https://github.com/pocl/pocl.git"
 if test "$POCL_BRANCH" = ""; then
   # https://github.com/pocl/pocl/issues/955
-  POCL_BRANCH="release_1_6"
+  POCL_BRANCH="release_1_7"
 fi
 if test -c /dev/nvidiactl; then
   POCL_EXTRA_FLAGS="-DENABLE_CUDA=ON"
@@ -30,7 +30,7 @@ else
 fi
 
 if test "$LLVM_VERSION" = ""; then
-  LLVM_VERSION=11
+  LLVM_VERSION=12
 fi
 
 BUILD_PATH="/opt/pocl-$POCL_BRANCH-build"
@@ -55,8 +55,11 @@ cd /opt
 git clone --depth 1 "$POCL_GIT_URL" "$BUILD_PATH" -b "$POCL_BRANCH"
 cd "$BUILD_PATH"
 
-# no longer needed for 1.7
-curl https://patch-diff.githubusercontent.com/raw/pocl/pocl/pull/904.diff | patch -p1
+# needed for 1.6, no longer needed for 1.7
+#curl https://patch-diff.githubusercontent.com/raw/pocl/pocl/pull/904.diff | patch -p1
+
+# needed for 1.7
+curl https://patch-diff.githubusercontent.com/raw/pocl/pocl/pull/963.diff | patch -p1
 
 mkdir "$BUILD_PATH/build"
 (cd "$BUILD_PATH/build" && \
