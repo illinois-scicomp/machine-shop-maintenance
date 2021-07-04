@@ -11,10 +11,10 @@ rm -f /etc/OpenCL/vendors/intel*.icd
 
 cd /opt
 
-# https://github.com/intel/llvm/releases/tag/oclcpuexp-2019.8.7.0.0725_rel
+# https://github.com/intel/llvm/releases/tag/2021-WW26
 VERSION=oclcpuexp-2021.12.6.0.19_rel
 RELEASE="2021-WW26"
-TBB_VERSION=""
+TBB_VERSION=2021.3.0
 
 # https://github.com/intel/llvm/releases/tag/2020-12
 # buggy, e.g. https://gitlab.tiker.net/inducer/grudge/-/jobs/239562
@@ -46,5 +46,7 @@ rm -Rf $OCLPATH/x64/libOpenCL.so*
 echo "export LD_LIBRARY_PATH=$OCLPATH/x64:"'$LD_LIBRARY_PATH' > /opt/enable-intel-cl.sh
 
 rm "$VERSION.tar.gz"
+
+echo "COMPLETED"
 
 # vim: sw=2
