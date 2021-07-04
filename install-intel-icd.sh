@@ -12,8 +12,8 @@ rm -f /etc/OpenCL/vendors/intel*.icd
 cd /opt
 
 # https://github.com/intel/llvm/releases/tag/oclcpuexp-2019.8.7.0.0725_rel
-VERSION=oclcpuexp-2019.8.7.0.0725_rel
-RELEASE="$VERSION"
+VERSION=oclcpuexp-2021.12.6.0.19_rel
+RELEASE="2021-WW26"
 TBB_VERSION=""
 
 # https://github.com/intel/llvm/releases/tag/2020-12
