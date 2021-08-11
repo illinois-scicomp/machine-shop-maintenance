@@ -98,7 +98,8 @@ with_echo apt install -y aptitude \
   maxima \
   bison flex \
   npm \
-  octave
+  octave \
+  libelf-dev dwarves
 
 # {{{ pocl
 
