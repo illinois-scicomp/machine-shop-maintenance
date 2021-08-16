@@ -20,7 +20,6 @@ LLVM_VERSION="$2"
 
 POCL_GIT_URL="https://github.com/pocl/pocl.git"
 if test "$POCL_BRANCH" = ""; then
-  # https://github.com/pocl/pocl/issues/955
   POCL_BRANCH="release_1_7"
 fi
 if test -c /dev/nvidiactl; then
