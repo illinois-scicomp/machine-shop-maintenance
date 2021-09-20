@@ -90,6 +90,7 @@ with_echo apt install -y aptitude \
   ffmpeg \
   ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind \
   build-essential packaging-dev \
+  gcc-multilib \
   llvm-dev libclang-dev gdb strace ltrace valgrind \
   libblas-dev liblapack-dev libopenblas-dev \
   opensc-pkcs11 \
