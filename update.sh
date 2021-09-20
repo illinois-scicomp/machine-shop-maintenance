@@ -51,7 +51,7 @@ fi
 
 with_echo apt update
 with_echo apt install -y aptitude \
-  spectre-meltdown-checker smartmontools \
+  spectre-meltdown-checker smartmontools docker \
   netcat-traditional elinks \
   iucode-tool \
   rsync \
