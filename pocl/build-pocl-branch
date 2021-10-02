@@ -43,7 +43,7 @@ rm -Rf "$INSTALL_PATH"
 rm -Rf "$BUILD_PATH"
 
 if [[ "$USE_LLVM_PACKAGES" = 1 ]]; then
-  apt install llvm-$LLVM_VERSION-dev libclang-$LLVM_VERSION-dev clang-$LLVM_VERSION libclang-cpp$LLVM_VERSION-dev
+  apt install llvm-$LLVM_VERSION-dev libclang-$LLVM_VERSION-dev clang-$LLVM_VERSION libclang-cpp$LLVM_VERSION-dev libomp5-$LLVM_VERSION
   LLVM_CONFIG="/usr/bin/llvm-config-$LLVM_VERSION"
 else
   $SCRIPT_DIR/build-llvm-$LLVM_VERSION "$INSTALL_PATH"
