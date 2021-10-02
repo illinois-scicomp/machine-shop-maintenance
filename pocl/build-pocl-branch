@@ -20,7 +20,7 @@ LLVM_VERSION="$2"
 
 POCL_GIT_URL="https://github.com/pocl/pocl.git"
 if test "$POCL_BRANCH" = ""; then
-  POCL_BRANCH="release_1_7"
+  POCL_BRANCH="release_1_8"
 fi
 if test -c /dev/nvidiactl; then
   POCL_EXTRA_FLAGS="-DENABLE_CUDA=ON"
@@ -29,7 +29,7 @@ else
 fi
 
 if test "$LLVM_VERSION" = ""; then
-  LLVM_VERSION=12
+  LLVM_VERSION=13
 fi
 
 BUILD_PATH="/opt/pocl-$POCL_BRANCH-build"
@@ -43,7 +43,7 @@ rm -Rf "$INSTALL_PATH"
 rm -Rf "$BUILD_PATH"
 
 if [[ "$USE_LLVM_PACKAGES" = 1 ]]; then
-  apt install libclang-$LLVM_VERSION-dev clang-$LLVM_VERSION libclang-cpp$LLVM_VERSION-dev
+  apt install llvm-$LLVM_VERSION-dev libclang-$LLVM_VERSION-dev clang-$LLVM_VERSION libclang-cpp$LLVM_VERSION-dev
   LLVM_CONFIG="/usr/bin/llvm-config-$LLVM_VERSION"
 else
   $SCRIPT_DIR/build-llvm-$LLVM_VERSION "$INSTALL_PATH"
@@ -58,7 +58,7 @@ cd "$BUILD_PATH"
 #curl https://patch-diff.githubusercontent.com/raw/pocl/pocl/pull/904.diff | patch -p1
 
 # needed for 1.7
-curl https://patch-diff.githubusercontent.com/raw/pocl/pocl/pull/963.diff | patch -p1
+#curl https://patch-diff.githubusercontent.com/raw/pocl/pocl/pull/963.diff | patch -p1
 
 mkdir "$BUILD_PATH/build"
 (cd "$BUILD_PATH/build" && \
