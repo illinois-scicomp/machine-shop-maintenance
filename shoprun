@@ -1,0 +1,27 @@
+#! /bin/bash
+
+if [[ -z "$TMUX" ]]; then 
+  echo "This wants to be run inside of tmux"
+  exit 1
+fi
+
+REMAIN="1"
+
+if [[ "$1" = "--noremain" ]]; then
+  REMAIN=0
+  shift
+fi
+
+for machine in porter lager bock stout dunkel koelsch tripel ; do
+  if [[ "$machine" == "porter" || "$machine" == "lager" || "$machine" == "bock" ]]; then
+    target="ad$machine"
+    sudocmd="sudo"
+  else
+    target="root@$machine"
+    sudocmd=""
+  fi
+  winindex=$(tmux neww -n $machine -P ssh -t "$target" $sudocmd "$@" | cut -f1 -d.)
+  if [[ "$REMAIN" = "1" ]]; then
+    tmux set-window-option -t "$winindex" remain-on-exit on
+  fi
+done
