@@ -80,6 +80,7 @@ with_echo apt install -y aptitude \
   python3-dbg python3-venv python3-virtualenv python3-pip-whl \
   silversearcher-ag ripgrep fzf \
   texlive-xetex texlive-publishers texlive-science texlive-bibtex-extra biber \
+  texlive-fonts-extra cm-super \
   mc \
   graphviz \
   gmsh occt-draw occt-misc libxi-dev rapidjson-dev \
@@ -89,7 +90,7 @@ with_echo apt install -y aptitude \
   likwid kcachegrind cpufrequtils linux-perf time numactl libunwind-dev \
   ffmpeg \
   ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind \
-  build-essential packaging-dev \
+  build-essential packaging-dev pkgconf \
   gcc-multilib \
   llvm-dev libclang-dev gdb strace ltrace valgrind \
   libblas-dev liblapack-dev libopenblas-dev \
