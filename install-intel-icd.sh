@@ -16,11 +16,11 @@ VERSION=oclcpuexp-2019.8.7.0.0725_rel
 RELEASE="$VERSION"
 TBB_VERSION=""
 
-# https://github.com/intel/llvm/releases/tag/2020-12
-# buggy, e.g. https://gitlab.tiker.net/inducer/grudge/-/jobs/239562
-#RELEASE=2020-12
-#VERSION=oclcpuexp-2020.11.11.0.04_rel
-#TBB_VERSION=2021.1.1
+# https://github.com/intel/llvm/releases/tag/2021-09
+# buggy, e.g. https://github.com/intel/llvm/issues/2038
+# RELEASE=2021-09
+# VERSION=oclcpuexp-2021.12.9.0.24_rel
+# TBB_VERSION=2021.5.0
 
 OCLPATH="/opt/intel-$VERSION"
 
