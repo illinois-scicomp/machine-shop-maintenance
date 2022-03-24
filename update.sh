@@ -99,7 +99,7 @@ with_echo apt install -y aptitude \
   kitty imagemagick \
   maxima \
   bison flex \
-  npm \
+  npm yarnpkg \
   octave \
   libelf-dev dwarves
 
