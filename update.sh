@@ -68,7 +68,7 @@ with_echo apt install -y aptitude \
   exim4 \
   libgmp-dev libmpfr-dev \
   libpq-dev libjemalloc-dev \
-  vim-nox emacs exuberant-ctags \
+  vim-nox emacs exuberant-ctags micro \
   python3-psutil python3-yaml python3-websockets \
   prometheus-node-exporter \
   net-tools acl \
