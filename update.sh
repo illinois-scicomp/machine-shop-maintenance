@@ -55,7 +55,7 @@ with_echo apt install -y aptitude \
   netcat-traditional elinks \
   iucode-tool \
   rsync \
-  etckeeper logrotate \
+  etckeeper logrotate gnupg2 \
   htop iotop iftop tcpdump mtr ncdu rsync unison-all unison-all-gtk \
   tmux screen tmate sudo apt-listbugs apt-listchanges \
   zsh csh tcsh fish \
