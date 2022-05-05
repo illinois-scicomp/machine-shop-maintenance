@@ -57,7 +57,7 @@ with_echo apt install -y aptitude \
   rsync \
   etckeeper logrotate gnupg2 \
   htop iotop iftop tcpdump mtr ncdu rsync unison-all unison-all-gtk \
-  tmux screen tmate sudo apt-listbugs apt-listchanges \
+  tmux screen tmate sudo apt-listbugs apt-listchanges reptyr \
   zsh csh tcsh fish \
   moreutils \
   tig subversion mercurial git-lfs \
