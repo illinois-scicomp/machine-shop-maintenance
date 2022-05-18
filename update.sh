@@ -60,7 +60,7 @@ with_echo apt install -y aptitude \
   tmux screen tmate sudo apt-listbugs apt-listchanges reptyr \
   zsh csh tcsh fish \
   moreutils \
-  tig subversion mercurial git-lfs \
+  tig subversion mercurial git-lfs gh \
   unattended-upgrades \
   curl \
   libnss-extrausers \
