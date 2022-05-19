@@ -16,6 +16,12 @@ VERSION=oclcpuexp-2019.8.7.0.0725_rel
 RELEASE="$VERSION"
 TBB_VERSION=""
 
+# https://github.com/intel/llvm/releases/tag/2022-WW13
+# still buggy, e.g. https://github.com/intel/llvm/issues/2038
+# VERSION=oclcpuexp-2022.13.3.0.16_rel
+# RELEASE="2022-WW13"
+# TBB_VERSION=2021.5.0
+
 # https://github.com/intel/llvm/releases/tag/2021-09
 # buggy, e.g. https://github.com/intel/llvm/issues/2038
 # RELEASE=2021-09
