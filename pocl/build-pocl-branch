@@ -20,7 +20,7 @@ LLVM_VERSION="$2"
 
 POCL_GIT_URL="https://github.com/pocl/pocl.git"
 if test "$POCL_BRANCH" = ""; then
-  POCL_BRANCH="release_1_8"
+  POCL_BRANCH="release_3_0"
 fi
 if test -c /dev/nvidiactl; then
   POCL_EXTRA_FLAGS="-DENABLE_CUDA=ON"
@@ -29,7 +29,7 @@ else
 fi
 
 if test "$LLVM_VERSION" = ""; then
-  LLVM_VERSION=13
+  LLVM_VERSION=14
 fi
 
 BUILD_PATH="/opt/pocl-$POCL_BRANCH-build"
