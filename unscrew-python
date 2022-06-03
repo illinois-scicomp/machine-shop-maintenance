@@ -1,3 +1,0 @@
-#! /bin/bash
-
-apt install python-requests python-retrying python-progress python-packaging python-cachecontrol python-lockfile python-distlib python-distro python-html5lib
