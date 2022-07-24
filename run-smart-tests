@@ -1,6 +1,6 @@
 #! /bin/bash
 
-set -e
+set -eo pipefail
 
 function with_echo()
 {
@@ -10,9 +10,23 @@ function with_echo()
 
 for i in /dev/sd[a-z]; do
 	devname=$(basename $i)
-	removable=$(cat /sys/block/$devname/removable)
-	if test "$removable" = "0"; then
-		smartctl -t long -q errorsonly $i
+	removable="$(cat /sys/block/$devname/removable)"
+	modelname="$(cat /sys/block/$devname/device/model)"
+	if [[ "$modelname" = PERC* ]]; then
+		idev=0
+		while true; do
+			if ! smartctl -t long -q errorsonly $i -d megaraid,$idev; then
+				break
+			fi
+			idev=$((idev+1))
+			# don't test all disks at the same time
+			sleep 3600
+		done
+
+	elif test "$removable" = "0"; then
+		if ! smartctl -t long -q errorsonly $i; then
+			echo "$i: failed to initiate test"
+		fi
 		# don't test all disks at the same time
 		sleep 3600
 	fi
