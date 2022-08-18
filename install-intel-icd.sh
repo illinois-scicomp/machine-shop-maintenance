@@ -7,7 +7,7 @@ set -x
 # in Loopy's Github CI.
 
 mkdir -p /etc/OpenCL/vendors
-rm -f /etc/OpenCL/vendors/intel*.icd
+rm -f /etc/OpenCL/vendors/intel*oclcpuexp*.icd
 
 cd /opt
 
