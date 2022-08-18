@@ -71,6 +71,8 @@ mkdir "$BUILD_PATH/build"
                 .. &&  \
         make -j15 install)
 
+# -D LLC_HOST_CPU=haswell for compatibility with valgrind
+
 # delete other POCL ICD files, to avoid conflicts
 rm -f /etc/OpenCL/vendors/pocl*.icd
 
