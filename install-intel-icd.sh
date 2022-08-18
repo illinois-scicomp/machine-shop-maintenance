@@ -16,6 +16,13 @@ VERSION=oclcpuexp-2019.8.7.0.0725_rel
 RELEASE="$VERSION"
 TBB_VERSION=""
 
+# https://github.com/intel/llvm/releases/tag/2022-WW33
+# still buggy, https://github.com/intel/llvm/issues/6607
+# also fails test_reduction_nan in pyopencl
+# VERSION=oclcpuexp-2022.14.8.0.04_rel
+# RELEASE="2022-WW33"
+# TBB_VERSION=2021.5.0
+
 # https://github.com/intel/llvm/releases/tag/2022-WW13
 # still buggy, e.g. https://github.com/intel/llvm/issues/2038
 # VERSION=oclcpuexp-2022.13.3.0.16_rel
