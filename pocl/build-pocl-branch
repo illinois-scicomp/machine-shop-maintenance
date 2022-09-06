@@ -54,7 +54,7 @@ cd /opt
 git clone --depth 1 "$POCL_GIT_URL" "$BUILD_PATH" -b "$POCL_BRANCH"
 cd "$BUILD_PATH"
 
-curl https://patch-diff.githubusercontent.com/raw/pocl/pocl/pull/1067.diff | patch -p1
+curl https://patch-diff.githubusercontent.com/raw/pocl/pocl/pull/1067.diff | filterdiff -p 1 -x CHANGES | patch -p1
 curl https://patch-diff.githubusercontent.com/raw/pocl/pocl/pull/1069.diff | patch -p1
 
 mkdir "$BUILD_PATH/build"
