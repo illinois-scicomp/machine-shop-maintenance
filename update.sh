@@ -80,7 +80,7 @@ with_echo apt install -y aptitude \
   python3-dbg python3-venv python3-virtualenv python3-pip-whl \
   silversearcher-ag ripgrep fzf \
   texlive-xetex texlive-publishers texlive-science texlive-bibtex-extra biber \
-  texlive-fonts-extra cm-super \
+  texlive-fonts-extra cm-super dvipng \
   mc \
   graphviz \
   gmsh occt-draw occt-misc libxi-dev rapidjson-dev \
