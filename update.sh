@@ -37,6 +37,7 @@ cp_from_config /root/.ssh/authorized_keys
 
 cp_from_config /etc/apt/apt.conf
 cp_from_config /etc/apt/sources.list
+cp_from_config /etc/apt/sources.list.d/kepler-cuda-toolkit.list
 
 cp_from_config /etc/apt/apt.conf.d/02periodic
 cp_from_config /etc/apt/apt.conf.d/50unattended-upgrades

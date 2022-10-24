@@ -1,0 +1,2 @@
+# nvidia cuda toolkit 11.4
+deb     [check-valid-until=no] https://snapshot.debian.org/archive/debian/20220911T210106Z/ sid main contrib non-free
