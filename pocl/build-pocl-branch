@@ -18,8 +18,7 @@ apt install libhwloc-dev libz-dev cmake pkgconf ocl-icd-dev
 POCL_BRANCH="$1"
 LLVM_VERSION="$2"
 
-#POCL_GIT_URL="https://github.com/pocl/pocl.git"
-POCL_GIT_URL="/home/andreas/pack/pocl"
+POCL_GIT_URL="https://github.com/pocl/pocl.git"
 if test "$POCL_BRANCH" = ""; then
   POCL_BRANCH="release_3_0"
 fi
