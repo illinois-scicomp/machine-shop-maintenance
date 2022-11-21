@@ -79,6 +79,7 @@ with_echo apt install -y aptitude \
   python3-pyqt5 \
   flake8 python3-pep8-naming \
   python3-dbg python3-venv python3-virtualenv python3-pip-whl \
+  python3.11-dbg python3.11-venv \
   silversearcher-ag ripgrep fzf \
   texlive-xetex texlive-publishers texlive-science texlive-bibtex-extra biber \
   texlive-fonts-extra cm-super dvipng \
