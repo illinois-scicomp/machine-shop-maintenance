@@ -106,8 +106,7 @@ with_echo apt install -y aptitude \
   libelf-dev dwarves
 
 # version restriction for https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1023312
-with_echo apt install -y --allow-downgrades 'ipmitool=1.8.18-11+b1'
-with_echo apt-mark hold 'ipmitool'
+with_echo apt install -y 'ipmitool=1.8.19-3'
 
 # {{{ pocl
 
