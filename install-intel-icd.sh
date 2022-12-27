@@ -12,16 +12,16 @@ rm -f /etc/OpenCL/vendors/intel*oclcpuexp*.icd
 cd /opt
 
 # https://github.com/intel/llvm/releases/tag/oclcpuexp-2019.8.7.0.0725_rel
-# VERSION=oclcpuexp-2019.8.7.0.0725_rel
-# RELEASE="$VERSION"
-# TBB_VERSION=""
+VERSION=oclcpuexp-2019.8.7.0.0725_rel
+RELEASE="$VERSION"
+TBB_VERSION=""
 
 # https://github.com/intel/llvm/releases/tag/2022-WW50
-# still buggy, https://github.com/intel/llvm/issues/6607
+# still buggy, https://github.com/intel/llvm/issues/7877
 # also fails test_reduction_nan in pyopencl
-VERSION=oclcpuexp-2022.15.12.0.01_rel
-RELEASE="2022-WW50"
-TBB_VERSION=2021.7.0
+# VERSION=oclcpuexp-2022.15.12.0.01_rel
+# RELEASE="2022-WW50"
+# TBB_VERSION=2021.7.0
 
 # https://github.com/intel/llvm/releases/tag/2022-WW33
 # still buggy, https://github.com/intel/llvm/issues/6607
