@@ -27,7 +27,7 @@ if test -c /dev/nvidiactl; then
     POCL_BRANCH="release_3_0"
   fi
   if test "$LLVM_VERSION" = ""; then
-    LLVM_VERSION=14
+    LLVM_VERSION=1j
   fi
 else
   POCL_EXTRA_FLAGS=""
