@@ -103,6 +103,7 @@ with_echo apt install -y aptitude \
   bison flex \
   npm yarnpkg \
   octave \
+  qemu qemu-user-static \
   libelf-dev dwarves
 
 with_echo apt-mark unhold 'ipmitool'
