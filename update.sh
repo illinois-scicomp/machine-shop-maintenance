@@ -106,6 +106,12 @@ with_echo apt install -y aptitude \
   qemu qemu-user-static \
   libelf-dev dwarves
 
+if test -c /dev/nvidiactl; then
+  # https://github.com/illinois-scicomp/machine-shop-maintenance/issues/69
+  with_echo apt install -y libnvidia-nvvm4
+  cp_from_config /etc/ld.so.conf.d/my-nvidia-current-gh69
+fi
+
 with_echo apt-mark unhold 'ipmitool'
 # The first version for which [1] can be addressed via the curl download below
 # [1] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1023312
