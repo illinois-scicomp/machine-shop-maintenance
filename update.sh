@@ -109,7 +109,8 @@ with_echo apt install -y aptitude \
 if test -c /dev/nvidiactl; then
   # https://github.com/illinois-scicomp/machine-shop-maintenance/issues/69
   with_echo apt install -y libnvidia-nvvm4
-  cp_from_config /etc/ld.so.conf.d/my-nvidia-current-gh69
+  rm -f /etc/ld.so.conf.d/my-nvidia-current-gh69
+  cp_from_config /etc/ld.so.conf.d/my-nvidia-current-gh69.conf
 fi
 
 with_echo apt-mark unhold 'ipmitool'
