@@ -124,6 +124,7 @@ curl -o /usr/share/misc/enterprise-numbers.txt https://www.iana.org/assignments/
 # mpi4py.MPI.Exception: MPI_ERR_OTHER: known error not in list
 # Sample CI failure:
 # https://gitlab.tiker.net/inducer/meshmode/-/jobs/533461#L772
+# issue: https://github.com/inducer/meshmode/issues/370
 with_echo apt install 'libfabric1=1.11.0-3'
 with_echo apt-mark hold 'libfabric1'
 
