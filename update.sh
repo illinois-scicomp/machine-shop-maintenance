@@ -82,7 +82,8 @@ with_echo apt install -y aptitude \
   python3.11-dbg python3.11-dev python3.11-venv \
   silversearcher-ag ripgrep fzf fd-find \
   texlive-xetex texlive-publishers texlive-science texlive-bibtex-extra biber \
-  texlive-fonts-extra cm-super dvipng \
+  texlive-fonts-extra cm-super dvipng latexdiff \
+  pandoc \
   mc \
   graphviz \
   gmsh occt-draw occt-misc libxi-dev rapidjson-dev \
