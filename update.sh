@@ -128,16 +128,10 @@ with_echo apt-mark unhold 'ipmitool'
 with_echo apt install 'ipmitool=1.8.19-4'
 curl -o /usr/share/misc/enterprise-numbers.txt https://www.iana.org/assignments/enterprise-numbers.txt
 
-# # libfabric1 version 1.17.0-3 causes grudge/meshmode MPI tests
-# # to fail with a mysterious
-# # mpi4py.MPI.Exception: MPI_ERR_OTHER: known error not in list
-# # Sample CI failure:
-# # https://gitlab.tiker.net/inducer/meshmode/-/jobs/533461#L772
-# # issue: https://github.com/inducer/meshmode/issues/370
-# with_echo apt install 'libfabric1=1.11.0-3'
-# with_echo apt-mark hold 'libfabric1'
-# Try whether this is OK by 2023-05-25
+# https://github.com/inducer/meshmode/issues/370
 with_echo apt-mark unhold 'libfabric1'
+with_echo apt install \
+        'libopenmpi3=4.1.5-1' 'libopenmpi-dev=4.1.5-1' 'openmpi-bin=4.1.5-1' 'openmpi-common=4.1.5-1'
 
 # {{{ pocl
 
