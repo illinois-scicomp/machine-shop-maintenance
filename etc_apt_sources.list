@@ -6,8 +6,8 @@ deb-src http://deb.debian.org/debian testing main contrib non-free non-free-firm
 deb-src http://deb.debian.org/debian unstable main contrib non-free non-free-firmware
 deb-src http://deb.debian.org/debian experimental main contrib non-free non-free-firmware
 
-deb http://security.debian.org/ bookworm/updates main
-deb-src http://security.debian.org/ bookworm/updates main
+deb http://security.debian.org/ bookworm-security main
+deb-src http://security.debian.org/ bookworm-security main
 
 deb https://deb.debian.org/debian/ bookworm-updates main
 deb-src https://deb.debian.org/debian/ bookworm-updates main
