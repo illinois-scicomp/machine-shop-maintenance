@@ -105,8 +105,7 @@ with_echo apt install -y aptitude \
   npm yarnpkg \
   octave \
   qemu qemu-user-static \
-  libelf-dev dwarves \
-  libcurl4-openssl-dev
+  libelf-dev dwarves
 
 if test -c /dev/nvidiactl; then
   # https://github.com/illinois-scicomp/machine-shop-maintenance/issues/69
