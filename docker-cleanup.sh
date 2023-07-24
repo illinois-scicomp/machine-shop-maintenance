@@ -1,5 +1,7 @@
 #! /bin/bash
 
+docker container prune -f
+
 # https://stackoverflow.com/a/35721111
 docker images --no-trunc --format '{{.ID}} {{.CreatedSince}}' \
     | grep ' months' | awk '{ print $1 }' \
