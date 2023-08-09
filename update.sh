@@ -61,7 +61,7 @@ with_echo apt install -y aptitude \
   tmux screen tmate sudo apt-listbugs apt-listchanges reptyr \
   zsh csh tcsh fish \
   moreutils gawk \
-  tig subversion mercurial git-lfs gh git-absorb git-autofixup \
+  tig subversion mercurial git-lfs gh git-absorb git-autofixup git-delta \
   unattended-upgrades \
   curl \
   libnss-extrausers \
@@ -113,11 +113,6 @@ if test -c /dev/nvidiactl; then
   rm -f /etc/ld.so.conf.d/my-nvidia-current-gh69
   cp_from_config /etc/ld.so.conf.d/my-nvidia-current-gh69.conf
 fi
-
-# https://github.com/dandavison/delta
-# being packaged for Debian at
-# https://salsa.debian.org/debian/git-delta/-/tree/debian/latest?ref_type=heads
-dpkg -i /shared/software/git-delta_0.16.5_amd64.deb
 
 if systemctl is-active --quiet gitlab-runner; then
   # for weird failures like
