@@ -93,7 +93,7 @@ with_echo apt install -y aptitude \
   likwid kcachegrind cpufrequtils linux-perf time numactl libunwind-dev \
   ffmpeg \
   ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind \
-  build-essential packaging-dev pkgconf \
+  build-essential packaging-dev pkgconf ninja-build cmake cmake-curses-gui \
   gcc-multilib \
   llvm-dev libclang-dev gdb strace ltrace valgrind \
   libblas-dev liblapack-dev libopenblas-dev \
