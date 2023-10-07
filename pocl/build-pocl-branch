@@ -80,6 +80,7 @@ mkdir "$BUILD_PATH/build"
 # delete other POCL ICD files, to avoid conflicts
 rm -f /etc/OpenCL/vendors/pocl*.icd
 
+mkdir -p /etc/OpenCL/vendors
 echo "$INSTALL_PATH/lib/libpocl.so" > /etc/OpenCL/vendors/pocl-$POCL_BRANCH.icd
 
 # vim: sw=2
