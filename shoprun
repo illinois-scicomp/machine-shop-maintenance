@@ -14,7 +14,11 @@ fi
 
 for machine in porter lager bock stout dunkel koelsch tripel ; do
   if [[ "$machine" == "porter" || "$machine" == "lager" || "$machine" == "bock" ]]; then
-    target="ad$machine"
+    if [[ "$(whoami)" == andreas ]]; then
+      target="ad$machine"
+    else
+      target="$machine"
+    fi
     sudocmd="sudo"
   else
     target="root@$machine"
