@@ -130,9 +130,9 @@ with_echo apt install 'ipmitool=1.8.19-4'
 curl -o /usr/share/misc/enterprise-numbers.txt https://www.iana.org/assignments/enterprise-numbers.txt
 
 # https://github.com/inducer/meshmode/issues/370
-with_echo apt-mark unhold 'libfabric1'
-with_echo apt install \
-        'libopenmpi3=4.1.5-2' 'libopenmpi-dev=4.1.5-2' 'openmpi-bin=4.1.5-2' 'openmpi-common=4.1.5-2'
+# with_echo apt-mark unhold 'libfabric1'
+# with_echo apt install \
+#         'libopenmpi3=4.1.5-2' 'libopenmpi-dev=4.1.5-2' 'openmpi-bin=4.1.5-2' 'openmpi-common=4.1.5-2'
 
 # {{{ pocl
 
