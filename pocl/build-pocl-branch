@@ -27,10 +27,10 @@ else
 fi
 
 if test "$POCL_BRANCH" = ""; then
-  POCL_BRANCH="release_4_0"
+  POCL_BRANCH="release_5_0"
 fi
 if test "$LLVM_VERSION" = ""; then
-  LLVM_VERSION=16
+  LLVM_VERSION=17
 fi
 
 BUILD_PATH="/opt/pocl-$POCL_BRANCH-build"
