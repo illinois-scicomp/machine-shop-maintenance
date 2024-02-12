@@ -64,7 +64,7 @@ PACKAGES=(
   unattended-upgrades
   curl
   libnss-extrausers
-  mlocate
+  mlocate bat
   exim4
   libgmp-dev libmpfr-dev
   libpq-dev libjemalloc-dev
@@ -76,7 +76,7 @@ PACKAGES=(
   python3-scipy python3-matplotlib
   swig
   python3-pyqt5
-  flake8 python3-pep8-naming
+  flake8 python3-pep8-naming efm-langserver
   python3-dbg python3-venv python3-virtualenv python3-pip-whl
   python3.12-dbg python3.12-dev python3.12-venv
   silversearcher-ag ripgrep fzf fd-find
@@ -94,7 +94,7 @@ PACKAGES=(
   ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind
   build-essential packaging-dev pkgconf ninja-build cmake cmake-curses-gui
   gcc-multilib
-  llvm-dev libclang-dev gdb strace ltrace valgrind
+  llvm-dev libclang-dev gdb strace ltrace valgrind clangd ispc
   libblas-dev liblapack-dev libopenblas-dev
   opensc-pkcs11
   libboost-all-dev
