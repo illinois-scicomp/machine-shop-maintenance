@@ -50,63 +50,66 @@ if test -L /usr/bin/maxima; then
         rm -f /usr/bin/maxima
 fi
 
-with_echo apt update
-with_echo apt install -y aptitude \
-  spectre-meltdown-checker smartmontools docker systemd-resolved \
-  netcat-traditional elinks \
-  iucode-tool \
-  rsync \
-  etckeeper logrotate gnupg2 \
-  htop iotop iftop tcpdump mtr ncdu rsync unison-all unison-all-gtk s-tui \
-  tmux screen tmate sudo apt-listbugs apt-listchanges reptyr \
-  zsh csh tcsh fish \
-  moreutils gawk \
-  tig subversion mercurial git-lfs gh git-absorb git-autofixup git-delta repo \
-  unattended-upgrades \
-  curl \
-  libnss-extrausers \
-  mlocate \
-  exim4 \
-  libgmp-dev libmpfr-dev \
-  libpq-dev libjemalloc-dev \
-  vim-nox emacs exuberant-ctags micro \
-  python3-psutil python3-yaml python3-websockets \
-  prometheus-node-exporter \
-  net-tools acl \
-  pypy3 pypy3-dev \
-  python3-scipy python3-matplotlib \
-  swig \
-  python3-pyqt5 \
-  flake8 python3-pep8-naming \
-  python3-dbg python3-venv python3-virtualenv python3-pip-whl \
-  python3.12-dbg python3.12-dev python3.12-venv \
-  silversearcher-ag ripgrep fzf fd-find \
-  texlive-xetex texlive-publishers texlive-science texlive-bibtex-extra biber \
-  texlive-fonts-extra cm-super dvipng latexdiff \
-  pandoc \
-  mc \
-  graphviz \
-  gmsh occt-draw occt-misc libxi-dev rapidjson-dev \
-  libocct-{ocaf,data-exchange,draw,foundation,modeling-algorithms,modeling-data,visualization}-dev \
-  libopenmpi-dev openmpi-common mpich libmpich-dev \
-  systemd-coredump \
-  likwid kcachegrind cpufrequtils linux-perf time numactl libunwind-dev \
-  ffmpeg \
-  ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind \
-  build-essential packaging-dev pkgconf ninja-build cmake cmake-curses-gui \
-  gcc-multilib \
-  llvm-dev libclang-dev gdb strace ltrace valgrind \
-  libblas-dev liblapack-dev libopenblas-dev \
-  opensc-pkcs11 \
-  libboost-all-dev \
-  kitty imagemagick \
-  maxima \
-  bison flex \
-  npm yarnpkg \
-  octave \
-  qemu qemu-user-static \
-  libelf-dev dwarves \
+PACKAGES=(
+  spectre-meltdown-checker smartmontools docker systemd-resolved
+  netcat-traditional elinks
+  iucode-tool
+  rsync
+  etckeeper logrotate gnupg2
+  htop iotop iftop tcpdump mtr ncdu rsync unison-all unison-all-gtk s-tui
+  tmux screen tmate sudo apt-listbugs apt-listchanges reptyr
+  zsh csh tcsh fish
+  moreutils gawk
+  tig subversion mercurial git-lfs gh git-absorb git-autofixup git-delta repo
+  unattended-upgrades
+  curl
+  libnss-extrausers
+  mlocate
+  exim4
+  libgmp-dev libmpfr-dev
+  libpq-dev libjemalloc-dev
+  vim-nox emacs exuberant-ctags micro
+  python3-psutil python3-yaml python3-websockets
+  prometheus-node-exporter
+  net-tools acl
+  pypy3 pypy3-dev
+  python3-scipy python3-matplotlib
+  swig
+  python3-pyqt5
+  flake8 python3-pep8-naming
+  python3-dbg python3-venv python3-virtualenv python3-pip-whl
+  python3.12-dbg python3.12-dev python3.12-venv
+  silversearcher-ag ripgrep fzf fd-find
+  texlive-xetex texlive-publishers texlive-science texlive-bibtex-extra biber
+  texlive-fonts-extra cm-super dvipng latexdiff
+  pandoc
+  mc
+  graphviz
+  gmsh occt-draw occt-misc libxi-dev rapidjson-dev
+  libocct-{ocaf,data-exchange,draw,foundation,modeling-algorithms,modeling-data,visualization}-dev
+  libopenmpi-dev openmpi-common mpich libmpich-dev
+  systemd-coredump
+  likwid kcachegrind cpufrequtils linux-perf time numactl libunwind-dev
+  ffmpeg
+  ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind
+  build-essential packaging-dev pkgconf ninja-build cmake cmake-curses-gui
+  gcc-multilib
+  llvm-dev libclang-dev gdb strace ltrace valgrind
+  libblas-dev liblapack-dev libopenblas-dev
+  opensc-pkcs11
+  libboost-all-dev
+  kitty imagemagick
+  maxima
+  bison flex
+  npm yarnpkg
+  octave
+  qemu qemu-user-static
+  libelf-dev dwarves
   neovim
+)
+
+with_echo apt update
+with_echo apt install -y aptitude "${PACKAGES[@]}"
 
 if test -c /dev/nvidiactl; then
   # https://github.com/illinois-scicomp/machine-shop-maintenance/issues/69
