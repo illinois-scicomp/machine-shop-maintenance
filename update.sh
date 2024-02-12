@@ -95,7 +95,7 @@ PACKAGES=(
   build-essential packaging-dev pkgconf ninja-build cmake cmake-curses-gui
   gcc-multilib
   llvm-dev libclang-dev gdb strace ltrace valgrind clangd ispc
-  libblas-dev liblapack-dev libopenblas-dev
+  libblas-dev liblapack-dev libopenblas-dev libtbb-dev
   opensc-pkcs11
   libboost-all-dev
   kitty imagemagick
