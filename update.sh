@@ -56,7 +56,7 @@ PACKAGES=(
   iucode-tool
   rsync
   etckeeper logrotate gnupg2
-  htop iotop iftop tcpdump mtr ncdu rsync unison-all unison-all-gtk s-tui nvtop
+  htop iotop iftop tcpdump mtr ncdu rsync s-tui nvtop
   tmux screen tmate sudo apt-listbugs apt-listchanges reptyr
   zsh csh tcsh fish
   moreutils gawk
