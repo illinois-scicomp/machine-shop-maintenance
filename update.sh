@@ -103,7 +103,7 @@ PACKAGES=(
   bison flex
   npm yarnpkg
   octave
-  qemu qemu-user-static
+  qemu-system qemu-user-static
   libelf-dev dwarves
   neovim
 )
