@@ -27,10 +27,10 @@ else
 fi
 
 if test "$POCL_BRANCH" = ""; then
-  POCL_BRANCH="release_5_0"
+  POCL_BRANCH="release_6_0"
 fi
 if test "$LLVM_VERSION" = ""; then
-  LLVM_VERSION=17
+  LLVM_VERSION=18
 fi
 
 BUILD_PATH="/opt/pocl-$POCL_BRANCH-build"
@@ -50,6 +50,7 @@ else
   $SCRIPT_DIR/build-llvm-$LLVM_VERSION "$INSTALL_PATH"
   LLVM_CONFIG="$INSTALL_PATH/bin/llvm-config"
 fi
+apt install libtbb-dev
 
 cd /opt
 git clone --depth 1 "$POCL_GIT_URL" "$BUILD_PATH" -b "$POCL_BRANCH"
@@ -71,6 +72,9 @@ mkdir "$BUILD_PATH/build"
                 -D POCL_INSTALL_ICD_VENDORDIR="$INSTALL_PATH" \
                 -D LLVM_CONFIG=$LLVM_CONFIG \
                 -D CMAKE_BUILD_TYPE=Release \
+                -D ENABLE_HOST_CPU_DEVICES_OPENMP=TRUE \
+                -D ENABLE_SPIRV=TRUE \
+                -D ENABLE_TBB_DEVICE=TRUE \
                 $POCL_EXTRA_FLAGS \
                 .. &&  \
         make -j15 install)
