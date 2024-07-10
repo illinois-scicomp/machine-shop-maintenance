@@ -51,61 +51,79 @@ if test -L /usr/bin/maxima; then
 fi
 
 PACKAGES=(
-  spectre-meltdown-checker smartmontools docker systemd-resolved
-  netcat-traditional elinks
-  iucode-tool
-  rsync
-  etckeeper logrotate gnupg2
+  # editor-ish
+  neovim vim-nox emacs exuberant-ctags micro
+
+  # top-ish
   htop iotop-c iftop tcpdump mtr ncdu rsync s-tui nvtop
-  tmux screen tmate sudo apt-listbugs apt-listchanges reptyr
+
+  # Shells and shell tools
   zsh csh tcsh fish
   moreutils gawk
+  tmux screen tmate sudo apt-listbugs reptyr
+
+  # version-control-ish
   tig subversion mercurial git-lfs gh git-absorb git-autofixup git-delta repo
-  unattended-upgrades
-  curl
-  libnss-extrausers
-  mlocate bat
-  exim4
-  libgmp-dev libmpfr-dev
-  libpq-dev libjemalloc-dev
-  vim-nox emacs exuberant-ctags micro
-  python3-psutil python3-yaml python3-websockets
+
+  # system-ish
+  libnss-extrausers mlocate exim4 curl
+  unattended-upgrades apt-listchanges
+  etckeeper logrotate
+  iucode-tool
+  systemd-coredump
+  spectre-meltdown-checker smartmontools docker systemd-resolved
   prometheus-node-exporter
-  net-tools acl
+
+  # fancy shell tools
+  bat silversearcher-ag ripgrep fzf fd-find
+
+  # Python-ish
   pypy3 pypy3-dev
+  python3-dbg python3-venv python3-virtualenv python3-pip-whl
+  python3-psutil python3-yaml python3-websockets
   python3-scipy python3-matplotlib
-  swig
   python3-pyqt5
   flake8 python3-pep8-naming efm-langserver
-  python3-dbg python3-venv python3-virtualenv python3-pip-whl
   python3.12-dbg python3.12-dev python3.12-venv
-  silversearcher-ag ripgrep fzf fd-find
+
+  # performance-ish
+  likwid kcachegrind cpufrequtils linux-perf time numactl libunwind-dev
+
+  # scicomp-ish
+  octave
+  gmsh occt-draw occt-misc libxi-dev rapidjson-dev
+  libocct-{ocaf,data-exchange,draw,foundation,modeling-algorithms,modeling-data,visualization}-dev
+  libopenmpi-dev openmpi-common mpich libmpich-dev
+
+
+  # compiler-ish/build-ish
+  build-essential packaging-dev pkgconf ninja-build cmake cmake-curses-gui
+  ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind
+  gcc-multilib
+  llvm-dev libclang-dev gdb strace ltrace valgrind clangd ispc
+  libblas-dev liblapack-dev libopenblas-dev libtbb-dev
+
+  # other? unsorted
+  libgmp-dev libmpfr-dev
+  libpq-dev libjemalloc-dev
+  net-tools acl
+  swig
   texlive-xetex texlive-publishers texlive-science texlive-bibtex-extra biber
   texlive-fonts-extra cm-super dvipng latexdiff
   pandoc
   mc
   graphviz
-  gmsh occt-draw occt-misc libxi-dev rapidjson-dev
-  libocct-{ocaf,data-exchange,draw,foundation,modeling-algorithms,modeling-data,visualization}-dev
-  libopenmpi-dev openmpi-common mpich libmpich-dev
-  systemd-coredump
-  likwid kcachegrind cpufrequtils linux-perf time numactl libunwind-dev
-  ffmpeg
-  ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind
-  build-essential packaging-dev pkgconf ninja-build cmake cmake-curses-gui
-  gcc-multilib
-  llvm-dev libclang-dev gdb strace ltrace valgrind clangd ispc
-  libblas-dev liblapack-dev libopenblas-dev libtbb-dev
+
+  netcat-traditional elinks rsync gnupg2
   opensc-pkcs11
   libboost-all-dev
   kitty imagemagick
+  ffmpeg
   maxima
   bison flex
   npm yarnpkg
-  octave
   qemu-system qemu-user-static
   libelf-dev dwarves
-  neovim
 )
 
 with_echo apt update
