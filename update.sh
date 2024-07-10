@@ -85,6 +85,7 @@ PACKAGES=(
   python3-pyqt5
   flake8 python3-pep8-naming efm-langserver
   python3.12-dbg python3.12-dev python3.12-venv
+  python3-pip pipx
 
   # performance-ish
   likwid kcachegrind cpufrequtils linux-perf time numactl libunwind-dev
