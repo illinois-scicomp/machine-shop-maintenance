@@ -125,6 +125,9 @@ PACKAGES=(
   npm yarnpkg
   qemu-system qemu-user-static
   libelf-dev dwarves
+
+  # for nvidia visual profiler
+  openjdk-8-jre
 )
 
 with_echo apt update
