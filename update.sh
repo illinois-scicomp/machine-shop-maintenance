@@ -114,6 +114,7 @@ PACKAGES=(
   pandoc
   mc
   graphviz
+  ipmitool
 
   netcat-traditional elinks rsync gnupg2
   opensc-pkcs11
@@ -148,10 +149,7 @@ if systemctl is-active --quiet gitlab-runner; then
   apt-mark hold gitlab-runner
 fi
 
-with_echo apt-mark unhold 'ipmitool'
-# The first version for which [1] can be addressed via the curl download below
-# [1] https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1023312
-with_echo apt install 'ipmitool=1.8.19-4'
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1023312
 curl -o /usr/share/misc/enterprise-numbers.txt https://www.iana.org/assignments/enterprise-numbers.txt
 
 # https://github.com/inducer/meshmode/issues/370
