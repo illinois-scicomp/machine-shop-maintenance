@@ -132,7 +132,7 @@ PACKAGES=(
 )
 
 # https://www.phoronix.com/news/Linux-CVSS-9.9-Rating
-with_echo apt remove --purge cups-browsed
+with_echo apt remove --purge cups-browsed || true
 
 with_echo apt update
 with_echo apt install -y aptitude "${PACKAGES[@]}"
