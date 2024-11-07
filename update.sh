@@ -115,6 +115,7 @@ PACKAGES=(
   mc
   graphviz
   ipmitool
+  golang
 
   netcat-traditional elinks rsync gnupg2
   opensc-pkcs11
