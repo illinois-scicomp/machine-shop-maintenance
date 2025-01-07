@@ -43,6 +43,12 @@ cp_from_config /etc/apt/apt.conf.d/02periodic
 cp_from_config /etc/apt/apt.conf.d/50unattended-upgrades
 cp_from_config /etc/sudoers.d/scicomp-extrasudo
 
+curl -L 'https://packages.gitlab.com/install/repositories/runner/gitlab-runner/config_file.list?os=debian&dist=bookworm&source=script' \
+  > /etc/apt/sources.list.d/gitlab-runner.list
+
+curl -L https://packages.gitlab.com/runner/gitlab-runner/gpgkey \
+  > /usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg
+
 rm -f /etc/apt/preferences.d/prevent-broken-gmsh
 
 if test -L /usr/bin/maxima; then
