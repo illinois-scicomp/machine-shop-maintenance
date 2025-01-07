@@ -145,14 +145,6 @@ if test -c /dev/nvidiactl; then
   cp_from_config /etc/ld.so.conf.d/my-nvidia-current-gh69.conf
 fi
 
-if systemctl is-active --quiet gitlab-runner; then
-  # for weird failures like
-  # https://gitlab.tiker.net/inducer/recipes/-/jobs/560927
-  # ERROR: Job failed: adding cache volume: set volume permissions: running permission container "a674708227436897c950c7feca0eecc4c7eebd3f484ac4fa91891d10d3ae5d24" for volume "runner-fb8etzh7-project-629-concurrent-0-cache-3c3f060a0374fc8bc39395164f415a70": waiting for permission container to finish: exit code 1
-  apt install 'gitlab-runner=13.3.1+dfsg-4+b6'
-  apt-mark hold gitlab-runner
-fi
-
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1023312
 curl -o /usr/share/misc/enterprise-numbers.txt https://www.iana.org/assignments/enterprise-numbers.txt
 
