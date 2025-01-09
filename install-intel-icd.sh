@@ -11,10 +11,10 @@ rm -f /etc/OpenCL/vendors/intel*oclcpuexp*.icd
 
 cd /opt
 
-# https://github.com/intel/llvm/releases/tag/oclcpuexp-2019.8.7.0.0725_rel
-VERSION=oclcpuexp-2019.8.7.0.0725_rel
-RELEASE="$VERSION"
-TBB_VERSION=""
+# https://github.com/intel/llvm/releases/tag/2024-WW43
+VERSION=oclcpuexp-2024.18.10.0.08_rel
+RELEASE="2024-WW43"
+TBB_VERSION=2022.0.0
 
 # https://github.com/intel/llvm/releases/tag/2022-WW50
 # still buggy, https://github.com/intel/llvm/issues/7877
@@ -42,6 +42,12 @@ TBB_VERSION=""
 # VERSION=oclcpuexp-2021.12.9.0.24_rel
 # TBB_VERSION=2021.5.0
 
+# used for many years, least buggy compared to subsequent releases
+# https://github.com/intel/llvm/releases/tag/oclcpuexp-2019.8.7.0.0725_rel
+# VERSION=oclcpuexp-2019.8.7.0.0725_rel
+# RELEASE="$VERSION"
+# TBB_VERSION=""
+
 OCLPATH="/opt/intel-$VERSION"
 
 if test -d "$OCLPATH" ; then
@@ -55,7 +61,7 @@ chmod go+rX -R "$OCLPATH"
 
 if test "$TBB_VERSION"; then 
   TBB_FILENAME="oneapi-tbb-$TBB_VERSION-lin.tgz"
-  curl -L -O "https://github.com/oneapi-src/oneTBB/releases/download/v$TBB_VERSION/oneapi-tbb-$TBB_VERSION-lin.tgz"
+  curl -L -O "https://github.com/uxlfoundation/oneTBB/releases/download/v$TBB_VERSION/oneapi-tbb-$TBB_VERSION-lin.tgz"
   tar x --strip-components=4 -C $OCLPATH/x64  -f "$TBB_FILENAME" oneapi-tbb-$TBB_VERSION/lib/intel64/gcc4.8/
   rm "$TBB_FILENAME"
 fi
