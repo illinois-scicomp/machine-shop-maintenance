@@ -47,7 +47,7 @@ curl -L 'https://packages.gitlab.com/install/repositories/runner/gitlab-runner/c
   > /etc/apt/sources.list.d/gitlab-runner.list
 
 curl -L https://packages.gitlab.com/runner/gitlab-runner/gpgkey \
-  > /usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg
+  | gpg --dearmor > /usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg
 
 rm -f /etc/apt/preferences.d/prevent-broken-gmsh
 
