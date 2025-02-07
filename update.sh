@@ -82,6 +82,7 @@ PACKAGES=(
 
   # fancy shell tools
   bat silversearcher-ag ripgrep fzf fd-find
+  broot zoxide parallel chafa fdupes
 
   # Python-ish
   pypy3 pypy3-dev
@@ -95,6 +96,7 @@ PACKAGES=(
 
   # performance-ish
   likwid kcachegrind cpufrequtils linux-perf time numactl libunwind-dev
+  cpuid linux-cpupower cpupower-gui
 
   # scicomp-ish
   octave
@@ -102,13 +104,12 @@ PACKAGES=(
   libocct-{ocaf,data-exchange,draw,foundation,modeling-algorithms,modeling-data,visualization}-dev
   libopenmpi-dev openmpi-common mpich libmpich-dev
 
-
   # compiler-ish/build-ish
   build-essential packaging-dev pkgconf ninja-build cmake cmake-curses-gui
   ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind
   gcc-multilib
   llvm-dev libclang-dev gdb strace ltrace valgrind clangd ispc
-  libblas-dev liblapack-dev libopenblas-dev libtbb-dev
+  libblas-dev liblapack-dev libopenblas-dev libtbb-dev liblapack-doc
 
   # other? unsorted
   libgmp-dev libmpfr-dev
