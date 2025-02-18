@@ -56,6 +56,8 @@ if test -L /usr/bin/maxima; then
         rm -f /usr/bin/maxima
 fi
 
+apt remove hwloc-nox
+
 PACKAGES=(
   # editor-ish
   neovim vim-nox emacs exuberant-ctags micro
@@ -79,6 +81,7 @@ PACKAGES=(
   systemd-coredump
   spectre-meltdown-checker smartmontools docker systemd-resolved
   prometheus-node-exporter
+  hwloc
 
   # fancy shell tools
   bat silversearcher-ag ripgrep fzf fd-find
