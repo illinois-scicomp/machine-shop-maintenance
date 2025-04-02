@@ -99,7 +99,7 @@ PACKAGES=(
 
   # performance-ish
   likwid kcachegrind cpufrequtils linux-perf time numactl libunwind-dev
-  cpuid linux-cpupower cpupower-gui
+  cpuid linux-cpupower cpupower-gui libhwy-dev
 
   # scicomp-ish
   octave
