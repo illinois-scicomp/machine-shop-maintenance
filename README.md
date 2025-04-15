@@ -3,6 +3,7 @@
 * [Admin notes](https://github.com/illinois-scicomp/machine-shop-maintenance/wiki/Admin-notes)
 * [User notes](https://github.com/illinois-scicomp/machine-shop-maintenance/wiki/User-notes)
 * [Machine Inventory](https://github.com/illinois-scicomp/machine-shop-maintenance/wiki/Machine-Inventory)
+* [Mailing list](https://lists.siebelschool.illinois.edu/lists/info/scicomp-machines)
 
 ## Issues
 
