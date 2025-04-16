@@ -113,6 +113,7 @@ PACKAGES=(
   gcc-multilib
   llvm-dev libclang-dev gdb strace ltrace valgrind clangd ispc
   libblas-dev liblapack-dev libopenblas-dev libtbb-dev liblapack-doc
+  libeigen3-dev
 
   # other? unsorted
   libgmp-dev libmpfr-dev
