@@ -63,7 +63,7 @@ PACKAGES=(
   neovim vim-nox emacs exuberant-ctags micro
 
   # top-ish
-  htop iotop-c iftop tcpdump mtr ncdu rsync s-tui nvtop
+  htop btop iotop-c iftop tcpdump mtr ncdu rsync s-tui nvtop
 
   # Shells and shell tools
   zsh csh tcsh fish
