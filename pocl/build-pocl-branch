@@ -27,10 +27,10 @@ else
 fi
 
 if test "$POCL_BRANCH" = ""; then
-  POCL_BRANCH="release_6_0"
+  POCL_BRANCH="release_7_0"
 fi
 if test "$LLVM_VERSION" = ""; then
-  LLVM_VERSION=18
+  LLVM_VERSION=19
 fi
 
 BUILD_PATH="/opt/pocl-$POCL_BRANCH-build"
@@ -49,6 +49,7 @@ if [[ "$USE_LLVM_PACKAGES" = 1 ]]; then
     "libclang-$LLVM_VERSION-dev"
     "clang-$LLVM_VERSION"
     "libclang-cpp$LLVM_VERSION-dev"
+    "libllvmspirvlib-$LLVM_VERSION-dev"
     "libomp5-$LLVM_VERSION"
     # Doesn't seem to make a difference?
     # "libllvmspirvlib-$LLVM_VERSION-dev"
