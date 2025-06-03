@@ -88,7 +88,7 @@ PACKAGES=(
   broot zoxide parallel chafa fdupes
 
   # Python-ish
-  pypy3 pypy3-dev
+  pypy3 pypy3-dev pypy3-venv
   python3-dbg python3-venv python3-virtualenv python3-pip-whl
   python3-psutil python3-yaml python3-websockets
   python3-scipy python3-matplotlib
