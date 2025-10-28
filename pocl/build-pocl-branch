@@ -93,7 +93,7 @@ mkdir "$BUILD_PATH/build"
                 -D ENABLE_TBB_DEVICE=TRUE \
                 $POCL_EXTRA_FLAGS \
                 .. &&  \
-        make -j15 install)
+        make -j8 install)
 
 
 # delete other POCL ICD files, to avoid conflicts
