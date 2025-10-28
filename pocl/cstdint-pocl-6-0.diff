@@ -1,0 +1,12 @@
+diff --git a/lib/CL/devices/spirv_parser.hh b/lib/CL/devices/spirv_parser.hh
+index c4f1e90e6..6e3838f59 100644
+--- a/lib/CL/devices/spirv_parser.hh
++++ b/lib/CL/devices/spirv_parser.hh
+@@ -30,6 +30,7 @@
+ 
+ #include <map>
+ #include <memory>
++#include <cstdint>
+ #include <set>
+ #include <string>
+ #include <vector>
