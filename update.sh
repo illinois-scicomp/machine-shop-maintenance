@@ -57,6 +57,7 @@ if test -L /usr/bin/maxima; then
 fi
 
 apt remove hwloc-nox
+apt remove --purge mlocate
 
 PACKAGES=(
   # editor-ish
@@ -74,7 +75,7 @@ PACKAGES=(
   tig subversion mercurial git-lfs gh git-absorb git-autofixup git-delta repo
 
   # system-ish
-  libnss-extrausers mlocate exim4 curl
+  libnss-extrausers plocate exim4 curl
   unattended-upgrades apt-listchanges
   etckeeper logrotate
   iucode-tool
