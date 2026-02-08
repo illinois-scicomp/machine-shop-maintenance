@@ -82,6 +82,8 @@ if test "$POCL_BRANCH" = "release_3_1"; then
   # https://github.com/pocl/pocl/issues/1157
   curl https://github.com/franz/pocl/commit/50c40baa28a97d89ff2533732e4118d273e95eb1.diff | patch -p1
 fi
+# Fix CUDA 13 build
+curl https://github.com/pocl/pocl/commit/7146cd550971e1cf62ba994e1cd6abbfc1ea282a.diff | patch -p1
 
 mkdir "$BUILD_PATH/build"
 (cd "$BUILD_PATH/build" && \
