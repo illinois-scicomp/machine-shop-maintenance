@@ -92,13 +92,13 @@ mkdir "$BUILD_PATH/build"
                 -D POCL_INSTALL_ICD_VENDORDIR="$INSTALL_PATH" \
                 -D LLVM_CONFIG=$LLVM_CONFIG \
                 -D CMAKE_BUILD_TYPE=Release \
-                -D ENABLE_HOST_CPU_DEVICES_OPENMP=TRUE \
                 -D ENABLE_SPIRV=TRUE \
-                -D ENABLE_TBB_DEVICE=TRUE \
                 $POCL_EXTRA_FLAGS \
                 .. &&  \
         make -j8 install)
 
+# Empirically: quite inefficient
+# -D ENABLE_HOST_CPU_DEVICES_OPENMP=TRUE \
 
 # delete other POCL ICD files, to avoid conflicts
 rm -f /etc/OpenCL/vendors/pocl*.icd
