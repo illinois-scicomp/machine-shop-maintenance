@@ -53,7 +53,7 @@ if [[ "$USE_LLVM_PACKAGES" = 1 ]]; then
     "clang-$LLVM_VERSION"
     "libclang-cpp$LLVM_VERSION-dev"
     "libllvmspirvlib-$LLVM_VERSION-dev"
-    "libomp5-$LLVM_VERSION"
+    "libomp5"
     # Doesn't seem to make a difference?
     # "libllvmspirvlib-$LLVM_VERSION-dev"
   )
