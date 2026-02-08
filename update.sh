@@ -95,7 +95,7 @@ PACKAGES=(
   python3-scipy python3-matplotlib
   python3-pyqt5
   flake8 python3-pep8-naming efm-langserver
-  python3.12-dbg python3.12-dev python3.12-venv
+  python3.14-dbg python3.14-dev python3.14-venv
   python3-pip pipx
 
   # performance-ish
