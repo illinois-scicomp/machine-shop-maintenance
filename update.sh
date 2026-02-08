@@ -17,6 +17,22 @@ function cp_from_config()
   CONFIG_MANGLED_NAME="$(echo "$CONFIG_MANGLED_NAME" | tr / _ )"
   with_echo cp "$CONFIG_MANGLED_NAME" "$ROOT_FS_NAME"
 }
+
+apt install systemd-resolved
+mkdir -p /etc/systemd/resolved.conf.d/
+cp_from_config /etc/systemd/resolved.conf.d/fallback-dns.conf
+systemctl restart systemd-resolved
+
+# to ensure this install will succeed
+with_echo apt update
+apt install git curl gpg
+
+curl -L 'https://packages.gitlab.com/install/repositories/runner/gitlab-runner/config_file.list?os=debian&dist=bookworm&source=script' \
+  > /etc/apt/sources.list.d/gitlab-runner.list
+
+curl -L https://packages.gitlab.com/runner/gitlab-runner/gpgkey \
+  | gpg --dearmor > /etc/apt/keyrings/runner_gitlab-runner-archive-keyring.gpg
+
 # {{{ install/update extrausers-maint
 
 function install_extrausers_maint()
@@ -39,15 +55,12 @@ cp_from_config /etc/apt/apt.conf
 cp_from_config /etc/apt/sources.list
 cp_from_config /etc/apt/sources.list.d/kepler-cuda-toolkit.list
 
+# to pick up sources changes
+with_echo apt update
+
 cp_from_config /etc/apt/apt.conf.d/02periodic
 cp_from_config /etc/apt/apt.conf.d/50unattended-upgrades
 cp_from_config /etc/sudoers.d/scicomp-extrasudo
-
-curl -L 'https://packages.gitlab.com/install/repositories/runner/gitlab-runner/config_file.list?os=debian&dist=bookworm&source=script' \
-  > /etc/apt/sources.list.d/gitlab-runner.list
-
-curl -L https://packages.gitlab.com/runner/gitlab-runner/gpgkey \
-  | gpg --dearmor > /usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg
 
 rm -f /etc/apt/preferences.d/prevent-broken-gmsh
 
@@ -147,7 +160,6 @@ PACKAGES=(
 # https://www.phoronix.com/news/Linux-CVSS-9.9-Rating
 with_echo apt remove --purge cups-browsed || true
 
-with_echo apt update
 with_echo apt install -y aptitude "${PACKAGES[@]}"
 
 if test -c /dev/nvidiactl; then
