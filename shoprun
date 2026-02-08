@@ -11,8 +11,20 @@ if [[ "$1" = "--noremain" ]]; then
   REMAIN=0
   shift
 fi
+MACHINES=(
+  porter
+  lager
+  bock
+  stout
+  dunkel
+  koelsch
+  tripel
+  doppelbock
+  ipa
+  maerzen
+)
 
-for machine in porter lager bock stout dunkel koelsch tripel ; do
+for machine in "${MACHINES[@]}" ; do
   if [[ "$machine" == "porter" || "$machine" == "lager" || "$machine" == "bock" ]]; then
     if [[ "$(whoami)" == andreas ]]; then
       target="ad$machine"
