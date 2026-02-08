@@ -189,6 +189,14 @@ fi
 
 # }}}
 
+# {{{ Nvidia non-distro toolkit install: add to default PATH
+
+if test -f /etc/apt/sources.list.d/cuda-debian*-x86_64.list ; then
+  # indicates install from Nvidia repo
+  cp_from_config /etc/profile.d/my-cuda-path.sh
+  cp_from_config /etc/zsh/zshenv
+fi
+
 # {{{ pocl
 
 mkdir -p /etc/OpenCL/vendors
