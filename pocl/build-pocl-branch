@@ -64,6 +64,8 @@ else
   LLVM_CONFIG="$INSTALL_PATH/bin/llvm-config"
 fi
 apt install libtbb-dev
+# This will get random versions of LLVM headers picked up by the build.
+apt remove llvm-dev
 
 cd /opt
 git clone --depth 1 "$POCL_GIT_URL" "$BUILD_PATH" -b "$POCL_BRANCH"
