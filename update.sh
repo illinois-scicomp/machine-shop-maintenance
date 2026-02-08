@@ -177,6 +177,18 @@ curl -o /usr/share/misc/enterprise-numbers.txt https://www.iana.org/assignments/
 # with_echo apt install \
 #         'libopenmpi3=4.1.5-2' 'libopenmpi-dev=4.1.5-2' 'openmpi-bin=4.1.5-2' 'openmpi-common=4.1.5-2'
 
+# {{{ Nvidia GPU: enable profiling for non-admins
+
+# https://developer.nvidia.com/nvidia-development-tools-solutions-ERR_NVGPUCTRPERM-permission-issue-performance-counters
+NVMODCONF=/etc/modprobe.d/uiuc-enable-profiling-for-non-admins.conf
+if test -c /dev/nvidiactl; then
+        echo 'options nvidia "NVreg_RestrictProfilingToAdminUsers=0"' > "$NVMODCONF"
+else
+        rm -f "$NVMODCONF"
+fi
+
+# }}}
+
 # {{{ pocl
 
 mkdir -p /etc/OpenCL/vendors
@@ -232,18 +244,6 @@ cp_from_config /etc/openmpi/openmpi-mca-params.conf
 cp_from_config /etc/cron.daily/clean-up-stuck-ci-jobs
 
 /shared/config/install-intel-icd.sh
-
-# {{{ Nvidia GPU: enable profiling for non-admins
-
-# https://developer.nvidia.com/nvidia-development-tools-solutions-ERR_NVGPUCTRPERM-permission-issue-performance-counters
-NVMODCONF=/etc/modprobe.d/uiuc-enable-profiling-for-non-admins.conf
-if test -c /dev/nvidiactl; then
-        echo 'options nvidia "NVreg_RestrictProfilingToAdminUsers=0"' > "$NVMODCONF"
-else
-        rm -f "$NVMODCONF"
-fi
-
-# }}}
 
 (cd /etc/cron.daily; rm -f run-smart-tests{,.sh})
 (cd /etc/cron.weekly; rm -f run-smart-tests; ln -s /shared/config/run-smart-tests)
