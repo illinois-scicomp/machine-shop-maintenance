@@ -197,6 +197,30 @@ if test -f /etc/apt/sources.list.d/cuda-debian*-x86_64.list ; then
   cp_from_config /etc/zsh/zshenv
 fi
 
+# }}}
+
+mkdir -p /etc/scicomp-users
+if [[ "$(hostname)" != "porter" ]]; then
+  cp_from_config /etc/scicomp-users/update.sh
+  cp_from_config /etc/scicomp-users/update-motd.sh
+fi
+cp_from_config /etc/cron.d/scicomp-users
+
+cp_from_config /etc/sysctl.d/80-allow-unpriv-perf.conf
+sysctl -p /etc/sysctl.d/80-allow-unpriv-perf.conf
+
+cp_from_config /etc/openmpi/openmpi-mca-params.conf
+cp_from_config /etc/cron.daily/clean-up-stuck-ci-jobs
+
+(cd /etc/cron.daily; rm -f run-smart-tests{,.sh})
+(cd /etc/cron.weekly; rm -f run-smart-tests; ln -s /shared/config/run-smart-tests)
+
+# (cd /etc/cron.daily; rm -f snapshot-filesystems; ln -s /shared/tools/snapshot-filesystems)
+
+(cd /etc/cron.weekly; rm -f clean-up-after-gitlab-runner; ln -s /shared/config/clean-up-after-gitlab-runner)
+
+(cd /etc/cron.hourly; rm -f monitor-ipmi-log; ln -s /shared/config/monitor-ipmi-log)
+
 # {{{ pocl
 
 mkdir -p /etc/OpenCL/vendors
@@ -238,29 +262,7 @@ rm -f /etc/apt/preferences.d/prevent-broken-pocl
 
 # }}}
 
-mkdir -p /etc/scicomp-users
-if [[ "$(hostname)" != "porter" ]]; then
-  cp_from_config /etc/scicomp-users/update.sh
-  cp_from_config /etc/scicomp-users/update-motd.sh
-fi
-cp_from_config /etc/cron.d/scicomp-users
-
-cp_from_config /etc/sysctl.d/80-allow-unpriv-perf.conf
-sysctl -p /etc/sysctl.d/80-allow-unpriv-perf.conf
-
-cp_from_config /etc/openmpi/openmpi-mca-params.conf
-cp_from_config /etc/cron.daily/clean-up-stuck-ci-jobs
-
 /shared/config/install-intel-icd.sh
-
-(cd /etc/cron.daily; rm -f run-smart-tests{,.sh})
-(cd /etc/cron.weekly; rm -f run-smart-tests; ln -s /shared/config/run-smart-tests)
-
-# (cd /etc/cron.daily; rm -f snapshot-filesystems; ln -s /shared/tools/snapshot-filesystems)
-
-(cd /etc/cron.weekly; rm -f clean-up-after-gitlab-runner; ln -s /shared/config/clean-up-after-gitlab-runner)
-
-(cd /etc/cron.hourly; rm -f monitor-ipmi-log; ln -s /shared/config/monitor-ipmi-log)
 
 /shared/config/docker-cleanup.sh
 
