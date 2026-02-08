@@ -137,7 +137,7 @@ PACKAGES=(
   maxima
   bison flex
   npm yarnpkg
-  qemu-system qemu-user-static
+  qemu-system qemu-user
   libelf-dev dwarves
 
   # for nvidia visual profiler
