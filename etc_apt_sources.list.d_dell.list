@@ -1,0 +1,1 @@
+deb [signed-by=/etc/apt-keys/dell.gpg] https://linux.dell.com/repo/community/openmanage/11100/jammy jammy main

@@ -23,7 +23,16 @@ mkdir -p /etc/systemd/resolved.conf.d/
 cp_from_config /etc/systemd/resolved.conf.d/fallback-dns.conf
 systemctl restart systemd-resolved
 
-# to ensure this install will succeed
+# {{{ Dell idrac repo
+
+if dmidecode -H 0x0000 | grep Dell; then
+  cp_from_config /etc/apt-keys/dell.gpg
+  cp_from_config /etc/apt/sources.list.d/dell.list
+fi
+
+# }}}
+
+# to ensure the basic tools install will succeed
 with_echo apt update
 apt install git curl gpg
 
