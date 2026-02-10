@@ -135,7 +135,8 @@ PACKAGES=(
   build-essential packaging-dev pkgconf ninja-build cmake cmake-curses-gui
   ocl-icd-opencl-dev ocl-icd-libopencl1 oclgrind
   gcc-multilib
-  llvm-dev libclang-dev gdb strace ltrace valgrind clangd ispc
+  # don't add llvm-dev here, it may confuse pocl's build process
+  llvm-21-dev libclang-dev gdb strace ltrace valgrind clangd ispc
   libblas-dev liblapack-dev libopenblas-dev libtbb-dev liblapack-doc
   libeigen3-dev
 
