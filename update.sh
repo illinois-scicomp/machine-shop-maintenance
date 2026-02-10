@@ -26,6 +26,7 @@ systemctl restart systemd-resolved
 # {{{ Dell idrac repo
 
 if dmidecode -H 0x0000 | grep Dell; then
+  mkdir -p /etc/apt-keys
   cp_from_config /etc/apt-keys/dell.gpg
   cp_from_config /etc/apt/sources.list.d/dell.list
 fi
