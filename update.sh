@@ -212,9 +212,9 @@ if test -f /etc/apt/sources.list.d/cuda-debian*-x86_64.list ; then
   CUDA_HEADER_CHECKSUM="$(sha256sum "$CUDA_HEADER" | cut -d ' ' -f1)"
   if test "$CUDA_HEADER_CHECKSUM" = "decdc28efcfaf0aaf806abc96d7bba9cb84b37c6e83cb82cda59b6aa59916ff8"; then
     echo "PATCHING CUDA HEADER"
-    cd "$(dirname "$CUDA_HEADER")"
-    cp "$(basename "$CUDA_HEADER")" "$(basename "$CUDA_HEADER")-original"
-    patch -p1 < /shared/config/cuda-13-rsqrt.diff
+    (cd "$(dirname "$CUDA_HEADER")" &&
+           cp "$(basename "$CUDA_HEADER")" "$(basename "$CUDA_HEADER")-original" &&
+           patch -p1 < /shared/config/cuda-13-rsqrt.diff)
   fi
 fi
 
