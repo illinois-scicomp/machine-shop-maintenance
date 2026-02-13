@@ -200,6 +200,48 @@ fi
 
 # }}}
 
+# {{{ email
+
+cat <<EOF > /etc/exim4/update-exim4.conf.conf
+# /etc/exim4/update-exim4.conf.conf
+#
+# Edit this file and /etc/mailname by hand and execute update-exim4.conf
+# yourself or use 'dpkg-reconfigure exim4-config'
+#
+# Please note that this is _not_ a dpkg-conffile and that automatic changes
+# to this file might happen. The code handling this will honor your local
+# changes, so this is usually fine, but will break local schemes that mess
+# around with multiple versions of the file.
+#
+# update-exim4.conf uses this file to determine variable values to generate
+# exim configuration macros for the configuration file.
+#
+# Most settings found in here do have corresponding questions in the
+# Debconf configuration, but not all of them.
+#
+# This is a Debian specific file
+
+dc_eximconfig_configtype='satellite'
+dc_other_hostnames='$(hostname -f)'
+dc_local_interfaces='127.0.0.1 ; ::1'
+dc_readhost='$(hostname -f)'
+dc_relay_domains=''
+dc_minimaldns='false'
+dc_relay_nets=''
+dc_smarthost='express-smtp.cites.uiuc.edu'
+CFILEMODE='644'
+dc_use_split_config='false'
+dc_hide_mailname='true'
+dc_mailname_in_oh='true'
+dc_localdelivery='mail_spool'
+EOF
+
+update-update-exim4.conf
+
+cp_from_config /etc/aliases
+
+# }}}
+
 # {{{ Nvidia non-distro toolkit install: add to default PATH
 
 if test -f /etc/apt/sources.list.d/cuda-debian*-x86_64.list ; then
