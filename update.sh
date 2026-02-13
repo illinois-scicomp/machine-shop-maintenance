@@ -237,8 +237,8 @@ dc_localdelivery='mail_spool'
 EOF
 
 update-update-exim4.conf
-
 cp_from_config /etc/aliases
+systemctl restart exim4
 
 # }}}
 
