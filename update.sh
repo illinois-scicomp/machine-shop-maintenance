@@ -110,6 +110,7 @@ PACKAGES=(
   # fancy shell tools
   bat silversearcher-ag ripgrep fzf fd-find
   broot zoxide parallel chafa fdupes
+  eza
 
   # Python-ish
   pypy3 pypy3-dev pypy3-venv
