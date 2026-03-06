@@ -60,6 +60,8 @@ function install_extrausers_maint()
 
 with_echo mkdir -p /root/.ssh
 cp_from_config /root/.ssh/authorized_keys
+cp_from_config /etc/ssh/sshd_config
+systemctl restart ssh
 
 cp_from_config /etc/apt/apt.conf
 cp_from_config /etc/apt/sources.list
